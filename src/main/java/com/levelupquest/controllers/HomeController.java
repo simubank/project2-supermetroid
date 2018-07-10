@@ -1,4 +1,4 @@
-package com.levelupquest;
+package com.levelupquest.controllers;
 
 
 import org.springframework.web.bind.annotation.CrossOrigin;
