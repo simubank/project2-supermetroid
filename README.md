@@ -22,6 +22,13 @@ For API ( development branch currently)
 3) Clean and rebuild the project 
 5) Run as a spring boot project 
 
+For DB
+
+1) Run mysql server cmd line or some other way. I have mac so the process is different for starting the server 
+2) Connect to the db 
+3) set the password as 1234
+4) run the query "create database levelupquest" 
+5) database is now setup
 
 
 
