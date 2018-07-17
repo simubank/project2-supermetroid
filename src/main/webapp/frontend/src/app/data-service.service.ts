@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {Http, Response} from '@angular/http';
 // import { Observable } from 'rxjs/add/operator/map';
 import { map, filter, catchError, mergeMap } from 'rxjs/operators';
+import {HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +11,24 @@ import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 export class DataServiceService {
 
   private url: String = 'http://localhost:8080';
-  constructor(private http: Http ) { }
+  private botsAPI: String = 'https://dev.botsfinancial.com/api';
+  private token: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ' +
+  'pc3MiOiJDQlAiLCJ0ZWFtX2lkIjoiMjgxMzc2OSIsImV4cCI6OTIyMzM3MjAzNjg1NDc3NSwiYXBwX2lkIjoiNjMzNjM3MzgtZjM3NC00NDkwL' +
+  'TgzZDQtYmU5YmZiYTQwMWYxIn0.-zxZLeTAAroJ1TSkMHqfFgEf7DWKubyYDDFiU-Wragw';
+  constructor(private http: Http,
+              private httpClient: HttpClient) { }
 
   getData() {
     return this.http.get(this.url + '/api/home')
     .pipe(
     map(response => response.json())
     );
+    }
+
+    getCustomer(id: String) {
+      const headers = new HttpHeaders({
+        'Authorization' : this.token
+      });
+    return this.httpClient.get(this.botsAPI + '/customers/' + id, {headers});
     }
 }
