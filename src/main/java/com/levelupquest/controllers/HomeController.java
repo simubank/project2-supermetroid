@@ -1,6 +1,7 @@
 package com.levelupquest.controllers;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.levelupquest.entities.Customer;
+import com.levelupquest.entities.Notification;
 import com.levelupquest.services.CustomerService;
 
 @RestController
@@ -55,5 +57,10 @@ public class HomeController {
 		this.customerService.save(c);
 		
 		return c;
+	}
+	
+	@GetMapping(value="/notifications/{id}")
+	public List<Notification> getNotifications(@PathVariable String id){
+		return this.customerService.getCustomerByApiId(id).get().getNotifications();
 	}
 }
