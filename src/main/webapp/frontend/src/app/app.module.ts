@@ -5,6 +5,9 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DataServiceService } from './data-service.service';
+import { RouterModule, Routes } from '@angular/router';
+import { AppRoutingModule } from './/app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -14,7 +17,8 @@ import { DataServiceService } from './data-service.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [DataServiceService],
   bootstrap: [AppComponent]
