@@ -25,8 +25,6 @@ public class HomeController {
 	@GetMapping(value = "/home")
 	public Customer home() {
 		Customer customer = new Customer();
-		customer.setName("Krishan");
-		customer.setId(1);
 		return customer;
 	}
 
