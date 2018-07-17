@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotificationComponent } from './notification/notification.component';
 import { FormComponent } from './form/form.component';
 import { PaymentComponent } from './payment/payment.component';
+import { StorageServiceModule} from 'angular-webstorage-service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PaymentComponent } from './payment/payment.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    StorageServiceModule
   ],
   providers: [DataServiceService],
   bootstrap: [AppComponent]
