@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService) { }
 
   ngOnInit() {
+    this.storage.set("1",232);
   }
 
+
+  saveInLocal(key, val): void {
+    this.storage.set("1",232); 
+    }
+
 }
+
+
+
+
+     
