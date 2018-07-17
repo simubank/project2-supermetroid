@@ -1,8 +1,9 @@
 package com.levelupquest.controllers;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,7 +49,10 @@ public class HomeController {
 
 	@GetMapping(value="/test")
 	public Customer test() {
-		Customer c = new Customer();
+		String id = "63363738-f374-4490-83d4-be9bfba401f1_e2ba9727-a181-48f6-a1bc-0abf5ce173a";
+		Customer c = this.customerService.getCustomerByApiId(id).get();
+		c.getAllowanceAccount().setStartDate( LocalDate.now());
+		this.customerService.save(c);
 		
 		return c;
 	}

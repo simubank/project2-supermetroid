@@ -21,7 +21,7 @@ public class Customer {
 	private int id;
 	private String apiId; 
 	@OneToOne(cascade = CascadeType.ALL)
-	private AllowanceAccount allowanceAccount;
-	private String allowanceSavingsAccount;
+	private AllowanceAccount allowanceAccount = new AllowanceAccount();
+	private String allowanceSavingsAccountId;
 	
 }

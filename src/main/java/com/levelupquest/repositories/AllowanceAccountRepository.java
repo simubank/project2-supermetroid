@@ -10,5 +10,4 @@ import com.levelupquest.entities.AllowanceAccount;
 @Repository
 public interface AllowanceAccountRepository extends CrudRepository<AllowanceAccount, Integer> {
 
-	Optional<AllowanceAccount> findByApiId(String id);
 }

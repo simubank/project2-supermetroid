@@ -21,8 +21,8 @@ public class AllowanceAccountImpl implements AllowanceAccountService{
 	}
 
 	@Override
-	public Optional<AllowanceAccount> getAccountByApiId(String id) {
-		return this.allowanceAccountRepository.findByApiId(id);
+	public Optional<AllowanceAccount> getAccountById(int id) {
+		return this.allowanceAccountRepository.findById(id);
 	}
 	
 	

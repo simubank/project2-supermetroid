@@ -7,6 +7,6 @@ import com.levelupquest.entities.AllowanceAccount;
 public interface AllowanceAccountService {
 
 	AllowanceAccount save(AllowanceAccount account);
-	Optional<AllowanceAccount> getAccountByApiId(String id);
+	Optional<AllowanceAccount> getAccountById(int id);
 	
 }
