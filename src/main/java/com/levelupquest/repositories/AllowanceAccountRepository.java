@@ -5,10 +5,10 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.levelupquest.entities.Customer;
+import com.levelupquest.entities.AllowanceAccount;
 
 @Repository
-public interface CustomerRepository extends CrudRepository<Customer, Integer> {
+public interface AllowanceAccountRepository extends CrudRepository<AllowanceAccount, Integer> {
 
-	Optional<Customer> findByApiId(String id);
+	Optional<AllowanceAccount> findByApiId(String id);
 }

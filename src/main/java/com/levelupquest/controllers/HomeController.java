@@ -29,9 +29,9 @@ public class HomeController {
 	}
 
 	@GetMapping(value = "/customer/{id}")
-	public Customer getCustomerById(@PathVariable int id) {
-		return this.customerService.getCustomerById(id).isPresent() ? this.customerService.getCustomerById(id).get()
-				: null;
+	public Customer getCustomerById(@PathVariable String id) {
+		return this.customerService.getCustomerByApiId(id).isPresent() 
+				? this.customerService.getCustomerByApiId(id).get() : null;
 	}
 
 	@PostMapping(value = "/customer")
@@ -39,15 +39,6 @@ public class HomeController {
 		return this.customerService.save(customer);
 	}
 
-	@DeleteMapping(value = "/customer/{id}")
-	public boolean delete(@PathVariable int id) {
-		try {
-			this.customerService.deleteById(id);
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-	}
 
 	@PutMapping(value = "/customer")
 	public Customer update(@RequestBody Customer customer) {
@@ -55,4 +46,10 @@ public class HomeController {
 		return this.customerService.update(customer);
 	}
 
+	@GetMapping(value="/test")
+	public Customer test() {
+		Customer c = new Customer();
+		
+		return c;
+	}
 }

@@ -20,11 +20,6 @@ public class CustomerServiceImpl implements CustomerService{
 		return this.customerRepository.save(customer);
 	}
 
-	@Override
-	public void deleteById(int id){
-		
-	 this.customerRepository.deleteById(id);
-	}
 
 	@Override
 	public Customer update(Customer customer) {
@@ -32,8 +27,8 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public Optional<Customer> getCustomerById(int id) {
-		return this.customerRepository.findById(id);
+	public Optional<Customer> getCustomerByApiId(String apiId) {
+		return this.customerRepository.findByApiId(apiId);
 	}
 	
 	

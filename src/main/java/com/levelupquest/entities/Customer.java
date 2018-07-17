@@ -18,8 +18,8 @@ public class Customer {
 	
 	@Id
 	@GeneratedValue
-	private int cId;
-	private String id; 
+	private int id;
+	private String apiId; 
 	@OneToOne(cascade = CascadeType.ALL)
 	private AllowanceAccount allowanceAccount;
 	private String allowanceSavingsAccount;

@@ -22,9 +22,8 @@ public class AllowanceAccount {
 	@Id
 	@GeneratedValue
 	private int id;
-	
+	private String apiId;
 	private long allowance;
-	
 	private long balance;
 	private String timePeriod;
 	private Date startDate;
