@@ -8,11 +8,19 @@ import { DataServiceService } from './data-service.service';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './/app-routing.module';
 
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NotificationComponent } from './notification/notification.component';
+import { FormComponent } from './form/form.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    DashboardComponent,
+    NotificationComponent,
+    FormComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
