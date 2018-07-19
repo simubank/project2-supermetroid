@@ -15,7 +15,6 @@ public customer: any;
 private id = '63363738-f374-4490-83d4-be9bfba401f1_6c8434d3-9d00-45d9-83d6-5c87cc97cdd8';
 
   constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService, private dataService: DataServiceService, private http: Http) {
-    console.log(this.storage.get ('1'));
   }
 
 
