@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Transaction } from '../model/transaction';
 
 @Component({
   selector: 'app-payment',
@@ -8,8 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class PaymentComponent implements OnInit {
 
   constructor() { }
+  private transactions: Transaction[] = [];
+
+
 
   ngOnInit() {
+
+  }
+
+  getTransactions() {
+    return this.transactions;
   }
 
 }
