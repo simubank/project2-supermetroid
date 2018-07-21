@@ -21,12 +21,8 @@
     "@angular/platform-browser-dynamic": "^6.0.9",
     "@angular/router": "^6.0.9",
     "@ng-bootstrap/ng-bootstrap": "^2.2.0",
-<<<<<<< HEAD
     "angular-webstorage-service": "^1.0.2",
-    "bootstrap": "^4.0.0-alpha.6",
-=======
     "bootstrap": "^4.1.2",
->>>>>>> branch 'HeungV1' of https://github.com/simubank/project2-supermetroid.git
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
