@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DataServiceService } from '../data-service.service';
+
 
 @Component({
   selector: 'app-setup-amount',
@@ -7,11 +9,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SetupAmountComponent implements OnInit {
 
-  @Input() customer: any;
 
-  constructor() { }
+  public customer: any;
+  constructor(private dataService: DataServiceService) {
+
+  }
 
   ngOnInit() {
+    this.dataService.currentMessage.subscribe(
+      (customer) => this.customer = customer);
   }
 
 }

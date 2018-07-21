@@ -3,6 +3,8 @@ import {Http, Response} from '@angular/http';
 import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 import {HttpHeaders} from '@angular/common/http';
 import {HttpClient} from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import { Customer } from './model/Customer';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,15 @@ export class DataServiceService {
   private token: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ' +
   'pc3MiOiJDQlAiLCJ0ZWFtX2lkIjoiMjgxMzc2OSIsImV4cCI6OTIyMzM3MjAzNjg1NDc3NSwiYXBwX2lkIjoiNjMzNjM3MzgtZjM3NC00NDkwL' +
   'TgzZDQtYmU5YmZiYTQwMWYxIn0.-zxZLeTAAroJ1TSkMHqfFgEf7DWKubyYDDFiU-Wragw';
+
+
+  private messageSource = new BehaviorSubject(new Customer());
+  currentMessage = this.messageSource.asObservable();
+
+  changeMessage(message: any) {
+    this.messageSource.next(message);
+  }
+
   constructor(private http: Http,
               private httpClient: HttpClient) { }
 
@@ -31,5 +42,7 @@ export class DataServiceService {
       return this.httpClient.get(this.botsAPI + url, {headers});
 
     }
+
+
 
 }
