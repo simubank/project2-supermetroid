@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Transaction } from '../model/transaction';
+import { TransactionArray } from '../model/transaction-array';
 
 @Component({
   selector: 'app-payment',
@@ -8,17 +9,22 @@ import { Transaction } from '../model/transaction';
 })
 export class PaymentComponent implements OnInit {
 
-  constructor() { }
-  private transactions: Transaction[] = [];
+  @Input() customer: any;
 
 
 
+
+  constructor() {
+  }
   ngOnInit() {
 
   }
 
   getTransactions() {
-    return this.transactions;
+    return  TransactionArray.getTransactions(this.customer);
+  }
+  makePayment(index: number) {
+    console.log(TransactionArray.getTransactions(this.customer)[index]);
   }
 
 }

@@ -8,8 +8,8 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataServiceService {
-
-  private url: String = 'http://localhost:8080';
+  static  homePath = 'api/home';
+  private javaApi: String = 'http://localhost:8080';
   private botsAPI: String = 'https://dev.botsfinancial.com/api';
   private token: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ' +
   'pc3MiOiJDQlAiLCJ0ZWFtX2lkIjoiMjgxMzc2OSIsImV4cCI6OTIyMzM3MjAzNjg1NDc3NSwiYXBwX2lkIjoiNjMzNjM3MzgtZjM3NC00NDkwL' +
@@ -18,10 +18,24 @@ export class DataServiceService {
               private httpClient: HttpClient) { }
 
   getData() {
-    return this.http.get(this.url + '/api/home')
+    return this.http.get(this.javaApi + '/api/home')
     .pipe(
     map(response => response.json())
     );
+    }
+
+    searchDB (url: string) {
+      return this.http.get(this.javaApi + url)
+    .pipe(
+      map(response => response.json())
+      );
+    }
+     search (url: string) {
+      const headers = new HttpHeaders({
+        'Authorization' : this.token
+      });
+      return this.httpClient.get(this.botsAPI + url, {headers});
+
     }
 
     getCustomer(id: String) {

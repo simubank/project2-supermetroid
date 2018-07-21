@@ -1,5 +1,5 @@
 export class Transaction {
-  public  accountId: String;
+  public accountId: String;
   public categoryTags: String[] ;
   public currencyAmount: number ;
   public customerId: String ;

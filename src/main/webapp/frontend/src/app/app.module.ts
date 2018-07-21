@@ -12,7 +12,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotificationComponent } from './notification/notification.component';
 import { FormComponent } from './form/form.component';
 import { PaymentComponent } from './payment/payment.component';
+import { TermsComponent} from './terms/terms.component'
+import {SetupAmountComponent} from './setup-amount/setup-amount.component'
 import { StorageServiceModule} from 'angular-webstorage-service';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +24,8 @@ import { StorageServiceModule} from 'angular-webstorage-service';
     DashboardComponent,
     NotificationComponent,
     FormComponent,
+    TermsComponent,
+    SetupAmountComponent,
     PaymentComponent
   ],
   imports: [
@@ -34,4 +39,5 @@ import { StorageServiceModule} from 'angular-webstorage-service';
   providers: [DataServiceService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {}
