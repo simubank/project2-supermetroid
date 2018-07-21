@@ -1,10 +1,21 @@
-<p>
-  dashboard works!
-</p>
+
+<div class="container">
 
 
 
+Welcome {{customer.givenName}}, {{customer.surname}}
 
-  <app-payment> </app-payment>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{customer.givenName}}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" (click)="switchCustomer(0)">Customer 1</a>
+    <a class="dropdown-item" (click)="switchCustomer(1)">Customer 2</a>
+    <a class="dropdown-item" (click)="switchCustomer(2)">Customer 3</a>
+  </div>
+</div>
+</div>
+  <!-- <app-payment [customer] = "customer"> </app-payment> -->
 
 
