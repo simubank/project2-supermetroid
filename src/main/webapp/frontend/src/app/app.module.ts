@@ -12,7 +12,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotificationComponent } from './notification/notification.component';
 import { FormComponent } from './form/form.component';
 import { PaymentComponent } from './payment/payment.component';
-import { StorageServiceModule} from 'angular-webstorage-service';
+import{ TermsComponent} from './terms/terms.component'
+import {SetupAmountComponent} from './setup-amount/setup-amount.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { StorageServiceModule} from 'angular-webstorage-service';
     DashboardComponent,
     NotificationComponent,
     FormComponent,
-    PaymentComponent
+    PaymentComponent,
+    TermsComponent,
+    SetupAmountComponent
   ],
   imports: [
     BrowserModule,
@@ -29,38 +32,9 @@ import { StorageServiceModule} from 'angular-webstorage-service';
     HttpModule,
     AppRoutingModule,
     HttpClientModule,
-    StorageServiceModule,
-    TermsComponent,
-    SetupAmountComponent
   ],
   providers: [DataServiceService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { DataServiceService } from './data-service.service';
-import { TermsComponent } from './terms/terms.component';
-import { SetupAmountComponent } from './setup-amount/setup-amount.component';
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    TermsComponent,
-    SetupAmountComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
-  ],
-  providers: [DataServiceService],
-  bootstrap: [AppComponent]
-})
 export class AppModule { }
