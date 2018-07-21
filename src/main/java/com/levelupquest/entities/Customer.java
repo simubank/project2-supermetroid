@@ -1,9 +1,12 @@
 package com.levelupquest.entities;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -23,5 +26,7 @@ public class Customer {
 	@OneToOne(cascade = CascadeType.ALL)
 	private AllowanceAccount allowanceAccount = new AllowanceAccount();
 	private String allowanceSavingsAccountId;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Notification> notifications;
 	
 }
