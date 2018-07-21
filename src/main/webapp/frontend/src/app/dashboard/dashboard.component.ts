@@ -34,6 +34,10 @@ this.dataService.searchAPI('/customers/' + id).subscribe
 });
 }
 
+switchCustomer(id: string) {
+this.getCustomer(this.customerIds[id]);
+}
+
 
 
 }
