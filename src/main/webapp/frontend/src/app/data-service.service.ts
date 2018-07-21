@@ -17,12 +17,6 @@ export class DataServiceService {
   constructor(private http: Http,
               private httpClient: HttpClient) { }
 
-  getData() {
-    return this.http.get(this.javaApi + '/api/home')
-    .pipe(
-    map(response => response.json())
-    );
-    }
 
     searchDB (url: string) {
       return this.http.get(this.javaApi + url)
@@ -30,7 +24,7 @@ export class DataServiceService {
       map(response => response.json())
       );
     }
-     search (url: string) {
+     searchAPI (url: string) {
       const headers = new HttpHeaders({
         'Authorization' : this.token
       });
@@ -38,10 +32,4 @@ export class DataServiceService {
 
     }
 
-    getCustomer(id: String) {
-      const headers = new HttpHeaders({
-        'Authorization' : this.token
-      });
-    return this.httpClient.get(this.botsAPI + '/customers/' + id, {headers});
-    }
 }

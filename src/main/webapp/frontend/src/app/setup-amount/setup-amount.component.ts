@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-setup-amount',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./setup-amount.component.css']
 })
 export class SetupAmountComponent implements OnInit {
+
+  @Input() customer: any;
 
   constructor() { }
 
