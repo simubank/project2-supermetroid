@@ -23,9 +23,9 @@ public class TransactionServiceImpl implements TransactionService {
 					.setBalance(calculateBalance(customer.getAllowanceAccount().getBalance(), transaction));
 
 			if (transaction.getCategoryTags().contains("GROCERY")) {
-
 				customer.setRewardPoints(calculateRewardPoints(transaction));
 				customer.getTrack().setGroceryAmount(transaction.getCurrencyAmount());
+				transaction.setMessage("Good job! Keep buying more groceries!");
 			}else if (transaction.getCategoryTags().contains("RESTAURANT")) {
 				customer.getTrack().setRestaurantAmount(transaction.getCurrencyAmount());
 			}else {
@@ -36,7 +36,16 @@ public class TransactionServiceImpl implements TransactionService {
 			// check if its the end of the period
 			if (customer.getAllowanceAccount().getEndDate() == LocalDate.now()) {
 				// this is the last date, show summary, give notification
+				// send an email
 			}
+			
+			//check if he has spent half of his money on eating out
+			if(customer.getTrack().getRestaurantAmount() <= customer.getAllowanceAccount().getAllowance() / 2) {
+				transaction.setMessage("You've spent more than half of your "
+						+ "money on eating out. Please focus on buying groceries now");
+			}
+			
+			
 
 		} else {
 			transaction.setSuccess(false);

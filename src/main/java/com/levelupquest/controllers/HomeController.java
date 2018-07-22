@@ -47,7 +47,7 @@ public class HomeController {
 			if(customer != null ) customer.getAllowanceAccount()
 			.setDaysLeft(
 					(int)ChronoUnit.DAYS.between(LocalDate.now(),
-							customer.getAllowanceAccount().getStartDate()));	
+							customer.getAllowanceAccount().getEndDate()));	
 				return customer;
 				
 	}
@@ -107,6 +107,10 @@ public class HomeController {
 	public Customer postAllowanceAccount(@PathVariable String id, @RequestBody AllowanceAccount account) {
 		Customer customer = this.customerService.getCustomerByApiId(id).get();
 		customer.setAllowanceAccount(account);
+		if(customer != null ) customer.getAllowanceAccount()
+		.setDaysLeft(
+				(int)ChronoUnit.DAYS.between(LocalDate.now(),
+						customer.getAllowanceAccount().getEndDate()));	
 		this.customerService.save(customer);
 		return customer;
 	}
