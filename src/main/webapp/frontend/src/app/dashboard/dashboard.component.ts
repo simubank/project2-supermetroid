@@ -61,6 +61,7 @@ getCustomer(id: string) {
     this.dataService.searchDB('/customer/' + id).subscribe
     ((data) => {
         this.customerDb = data;
+        this.dataService.changeCustomerDB(this.customerDb);
     }
 
     );
