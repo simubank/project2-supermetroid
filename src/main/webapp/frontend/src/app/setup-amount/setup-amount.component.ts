@@ -16,7 +16,7 @@ export class SetupAmountComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.currentMessage.subscribe(
+    this.dataService.customerMessage.subscribe(
       (customer) => this.customer = customer);
   }
 

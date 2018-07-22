@@ -18,11 +18,18 @@ export class DataServiceService {
   'TgzZDQtYmU5YmZiYTQwMWYxIn0.-zxZLeTAAroJ1TSkMHqfFgEf7DWKubyYDDFiU-Wragw';
 
 
-  private messageSource = new BehaviorSubject(new Customer());
-  currentMessage = this.messageSource.asObservable();
+  private customerSource = new BehaviorSubject(new Object());
+  customerMessage = this.customerSource.asObservable();
 
-  changeMessage(message: any) {
-    this.messageSource.next(message);
+  private notificationsSource = new BehaviorSubject(new Object());
+  notificationsMessage = this.notificationsSource.asObservable();
+
+  changeCustomer(customer: any) {
+    this.customerSource.next(customer);
+  }
+
+  changeNotifications(notifications: any): any {
+    this.notificationsSource.next(notifications);
   }
 
   constructor(private http: Http,

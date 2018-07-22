@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Customer } from '../model/Customer';
 import { DataServiceService } from '../data-service.service';
-import { splitAtColon } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,13 +30,25 @@ export class DashboardComponent implements OnInit {
   }
 
 getCustomer(id: string) {
-this.dataService.searchAPI('/customers/' + id).subscribe
-((data) => {
-  this.customer = data;
-  this.customer = this.customer.result[0];
-  this.dataService.changeMessage(this.customer);
-});
-}
+    this.dataService.searchAPI('/customers/' + id).subscribe
+    ((data) => {
+      this.customer = data;
+      this.customer = this.customer.result[0];
+      this.dataService.changeCustomer(this.customer);
+    });
+  }
+
+  getNotifications(id: string) {
+    this.dataService.searchDB('/notifications/' + id).subscribe
+    ((data) => {
+      this.dataService.changeNotifications(data);
+    });
+  }
+
+  switchCustomer(id: number) {
+    this.getCustomer(this.customerIds[id]);
+    this.getNotifications(this.customerIds[id]);
+  }
 
 switchCustomer(id: string) {
 this.getCustomer(this.customerIds[id]);
