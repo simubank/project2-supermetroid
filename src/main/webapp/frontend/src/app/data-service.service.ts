@@ -25,12 +25,19 @@ export class DataServiceService {
   private notificationsSource = new BehaviorSubject(new Object());
   notificationsMessage = this.notificationsSource.asObservable();
 
+  private customerDBSource = new BehaviorSubject(new Object());
+  customerDBMessage = this.customerDBSource.asObservable();
+
   changeCustomer(customer: any) {
     this.customerSource.next(customer);
   }
 
   changeNotifications(notifications: any): any {
     this.notificationsSource.next(notifications);
+  }
+
+  changeCustomerDB(customer: any) {
+    this.customerDBSource.next(customer);
   }
 
   constructor(private http: Http,
