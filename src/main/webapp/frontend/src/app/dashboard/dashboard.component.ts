@@ -50,9 +50,6 @@ getCustomer(id: string) {
     this.getNotifications(this.customerIds[id]);
   }
 
-switchCustomer(id: string) {
-this.getCustomer(this.customerIds[id]);
-}
 displayNotification(notification: string) {
   const strings = notification.split(':');
   this.notificationClass = strings[0];
