@@ -51,11 +51,11 @@ public class HomeController {
 
 	@GetMapping(value = "/test")
 	public Customer test() {
-		String id = "63363738-f374-4490-83d4-be9bfba401f1_e2ba9727-a181-48f6-a1bc-0abf5ce173a";
+		String id = "63363738-f374-4490-83d4-be9bfba401f1_6c8434d3-9d00-45d9-83d6-5c87cc97cdd8";
+		String account="63363738-f374-4490-83d4-be9bfba401f1_60c1c98a-120d-48fe-875e-44df4525ca90";
 		Customer c = this.customerService.getCustomerByApiId(id).get();
-		c.getAllowanceAccount().setStartDate(LocalDate.now());
+		c.setAllowanceSavingsAccountId(account);
 		this.customerService.save(c);
-
 		return c;
 	}
 
@@ -71,5 +71,10 @@ public class HomeController {
 		customer.getNotifications().add(notification);
 		this.customerService.save(customer);
 		return customer.getNotifications();
+	}
+	
+	@GetMapping(value = "/balance/{id}")
+	public double getBalance(@PathVariable String id) {
+		return this.customerService.getCustomerByApiId(id).get().getAllowanceAccount().getBalance();
 	}
 }

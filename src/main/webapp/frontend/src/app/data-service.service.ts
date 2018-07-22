@@ -11,7 +11,7 @@ import { Customer } from './model/Customer';
 })
 export class DataServiceService {
   static  homePath = 'api/home';
-  private javaApi: String = 'http://localhost:8080';
+  private javaApi: String = 'http://localhost:8080/api';
   private botsAPI: String = 'https://dev.botsfinancial.com/api';
   private token: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ' +
   'pc3MiOiJDQlAiLCJ0ZWFtX2lkIjoiMjgxMzc2OSIsImV4cCI6OTIyMzM3MjAzNjg1NDc3NSwiYXBwX2lkIjoiNjMzNjM3MzgtZjM3NC00NDkwL' +
