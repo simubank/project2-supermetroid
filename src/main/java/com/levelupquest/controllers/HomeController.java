@@ -1,5 +1,7 @@
 package com.levelupquest.controllers;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.levelupquest.entities.AllowanceAccount;
 import com.levelupquest.entities.Customer;
 import com.levelupquest.entities.Notification;
 import com.levelupquest.entities.Track;
@@ -38,9 +41,15 @@ public class HomeController {
 
 	@GetMapping(value = "/customer/{id}")
 	public Customer getCustomerById(@PathVariable String id) {
-		return this.customerService.getCustomerByApiId(id).isPresent()
-				? this.customerService.getCustomerByApiId(id).get()
-				: null;
+		 Customer customer = this.customerService.getCustomerByApiId(id).isPresent()
+				? this.customerService.getCustomerByApiId(id).get() : null;
+				
+			if(customer != null ) customer.getAllowanceAccount()
+			.setDaysLeft(
+					(int)ChronoUnit.DAYS.between(LocalDate.now(),
+							customer.getAllowanceAccount().getStartDate()));	
+				return customer;
+				
 	}
 
 	@PostMapping(value = "/customer")
@@ -92,10 +101,14 @@ public class HomeController {
 		Customer customer = this.customerService.getCustomerByApiId(id).get();
 		if(customer.getTrack() == null) customer.setTrack(new Track());
 		return this.transactionService.makePayment(customer, transaction);
-		
-		
-		
-		
+	}
+	
+	@PostMapping(value="/account/{id}")
+	public Customer postAllowanceAccount(@PathVariable String id, @RequestBody AllowanceAccount account) {
+		Customer customer = this.customerService.getCustomerByApiId(id).get();
+		customer.setAllowanceAccount(account);
+		this.customerService.save(customer);
+		return customer;
 	}
 	
 }

@@ -40,7 +40,7 @@ export class PaymentComponent  {
         transaction = this.customerDb.allowanceAccount.transactions[this.customerDb.allowanceAccount.transactions.length - 1];
         if (!transaction.success) {
           // if transaction failed
-          this.notificationChange.emit('alert alert-danger' + ':' + transaction.successMessage);
+          this.notificationChange.emit('alert alert-danger' + ':' + transaction.message);
         }
       }
     );
