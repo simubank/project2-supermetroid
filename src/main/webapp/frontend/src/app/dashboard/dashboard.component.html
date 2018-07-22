@@ -1,73 +1,83 @@
-
 <div class="container">
 
-<div *ngIf="notification != null">
-    <div class="alert {{notificationClass}} alert-dismissible fade show" >
-        {{notification}}
-        <button type="button" class="close" aria-label="Close" (click)="disableNotification()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+	<div *ngIf="notification != null">
+		<div class="alert {{notificationClass}} alert-dismissible fade show">
+			{{notification}}
+			<button type="button" class="close" aria-label="Close" (click)="disableNotification()">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
 
-    </div>
-<p class= "welcome" >Welcome {{customer.givenName}}, {{customer.surname}} </p>
+	</div>
+	<p class="welcome">Welcome {{customer.givenName}}, {{customer.surname}} </p>
 
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {{customer.givenName}}
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" (click)="switchCustomer(0)">Customer 1</a>
-        <a class="dropdown-item" (click)="switchCustomer(1)">Customer 2</a>
-        <a class="dropdown-item" (click)="switchCustomer(2)">Customer 3</a>
-      </div>
-    </div>
-</div>
-<div class="container">
-
-  <div class="summary" > Summary: You are status is good
-
-    <img src="../../assets/1.png" *ngIf="icon ==1">
-    <img src="../../assets/2.png" *ngIf="icon ==2">
-    <img src="../../assets/3.png" *ngIf="icon ==3">
-  </div>
-  <div class="row">
-<div class="col-xs-3 col-lg-3">
-	<div class ="space"></div>
-	<div class="card">
-			<button class="button button5">Highlights</button>
-			<div class="card-body">
-			<p>Points: {{points}} </p>
-			<p>Current Balance : {{currentBalance}} </p>
-			<p>Total Balance : {{totalBalance}} </p>
-			<p>Time Left : {{timeLeft}} </p>
-			</div>
+	<div class="dropdown">
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+		 aria-expanded="false">
+			{{customer.givenName}}
+		</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<a class="dropdown-item" (click)="switchCustomer(0)">Customer 1</a>
+			<a class="dropdown-item" (click)="switchCustomer(1)">Customer 2</a>
+			<a class="dropdown-item" (click)="switchCustomer(2)">Customer 3</a>
+		</div>
 	</div>
 </div>
-<div class="col-xs-3 col-lg-3">
-	<div class ="space"></div>
-		<div class="card">
-			<button class="button button5">Transaction</button>
-			<div class="card-body">
-			<li> Yaa</li>
+<div class="container">
+<!-- 
+	<div class="summary"> Summary: You are status is good
+
+		<img src="../../assets/1.png" *ngIf="icon ==1">
+		<img src="../../assets/2.png" *ngIf="icon ==2">
+		<img src="../../assets/3.png" *ngIf="icon ==3">
+	</div> -->
+	<div class="row">
+		<div class="space"></div>
+		<div class="col-xxs-3 col-lg-3">
+			<div class="circle-text">
+				<div>Points: {{points}}</div>
+			</div>
+		</div>
+		<div class="col-xxs-3 col-lg-3">
+			<div class="circle-text">
+				<div>Current Balance: {{currentBalance}}</div>
+			</div>
+		</div>
+		<div class="col-xxs-3 col-lg-3">
+			<div class="circle-text">
+				<div>Total Balance: {{totalBalance}}</div>
+			</div>
+		</div>
+		<div class="col-xxs-3 col-lg-3">
+			<div class="circle-text">
+				<div>Time Left: {{timeLeft}}</div>
 			</div>
 		</div>
 	</div>
-	
-	<div class="col-xs-3 col-lg-3">
-			<div class ="space"></div>
-				<div class="card">
-					<button class="button button5">Analytics</button>
-					<div class="card-body">
+	<div class="row">
+		<div class="col-xs-3 col-lg-3">
+			<div class="space"></div>
+			<div class="card">
+				<button class="button button5">Transaction</button>
+				<div class="card-body">
 					<li> Yaa</li>
-					</div>
 				</div>
 			</div>
-</div>
+		</div>
 
-<button class="btn btn-success paymentButton" (click)="togglePayment()"> {{paymentText}} </button>
+		<div class="col-xs-3 col-lg-3">
+			<div class="space"></div>
+			<div class="card">
+				<button class="button button5">Analytics</button>
+				<div class="card-body">
+					<li> Yaa</li>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<button class="btn btn-success paymentButton" (click)="togglePayment()"> {{paymentText}} </button>
 </div>
 <footer *ngIf="showPayment">
-  <app-payment [customer] = "customer" (notificationChange)="displayNotification($event)"> </app-payment>
+	<app-payment [customer]="customer" (notificationChange)="displayNotification($event)"> </app-payment>
 </footer>
-
