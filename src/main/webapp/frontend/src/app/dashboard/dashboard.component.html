@@ -1,21 +1,59 @@
 
 <div class="container">
+<p class= "welcome" >Welcome {{customer.givenName}}, {{customer.surname}} </p>
 
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{customer.givenName}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" (click)="switchCustomer(0)">Customer 1</a>
+        <a class="dropdown-item" (click)="switchCustomer(1)">Customer 2</a>
+        <a class="dropdown-item" (click)="switchCustomer(2)">Customer 3</a>
+      </div>
+    </div>
+</div>
+<div class="container">
 
+  <div class="summary" > Summary: You are status is good
 
-Welcome {{customer.givenName}}, {{customer.surname}}
-
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{customer.givenName}}
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" (click)="switchCustomer(0)">Customer 1</a>
-    <a class="dropdown-item" (click)="switchCustomer(1)">Customer 2</a>
-    <a class="dropdown-item" (click)="switchCustomer(2)">Customer 3</a>
+    <img src="../../assets/1.png" *ngIf="icon ==1">
+    <img src="../../assets/2.png" *ngIf="icon ==2">
+    <img src="../../assets/3.png" *ngIf="icon ==3">
   </div>
+  <div class="row">
+<div class="col-xs-3 col-lg-3">
+	<div class ="space"></div>
+	<div class="card">
+			<button class="button button5">Highlights</button>
+			<div class="card-body">
+			<p>Points: {{points}} </p>
+			<p>Current Balance : {{currentBalance}} </p>
+			<p>Total Balance : {{totalBalance}} </p>
+			<p>Time Left : {{timeLeft}} </p>
+			</div>
+	</div>
+</div>
+<div class="col-xs-3 col-lg-3">
+	<div class ="space"></div>
+		<div class="card">
+			<button class="button button5">Transaction</button>
+			<div class="card-body">
+			<li> Yaa</li>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-xs-3 col-lg-3">
+			<div class ="space"></div>
+				<div class="card">
+					<button class="button button5">Analytics</button>
+					<div class="card-body">
+					<li> Yaa</li>
+					</div>
+				</div>
+			</div>
 </div>
 </div>
-  <!-- <app-payment [customer] = "customer"> </app-payment> -->
 
 
