@@ -51,9 +51,12 @@ public class HomeController {
 
 	@GetMapping(value = "/test")
 	public Customer test() {
-		String id = "63363738-f374-4490-83d4-be9bfba401f1_e2ba9727-a181-48f6-a1bc-0abf5ce173a";
+		String id = "63363738-f374-4490-83d4-be9bfba401f1_85a09159-bda3-426a-bcd3-00532807d1df";
+		Notification notification = new Notification();
+		notification.setText("test2");
 		Customer c = this.customerService.getCustomerByApiId(id).get();
-		c.getAllowanceAccount().setStartDate(LocalDate.now());
+		c.getNotifications().add(notification);
+//		c.getAllowanceAccount().setStartDate(LocalDate.now());
 		this.customerService.save(c);
 
 		return c;
@@ -66,7 +69,8 @@ public class HomeController {
 
 	@PostMapping(value = "/notifications/{id}")
 	public List<Notification> postNotificatiton(@RequestBody String notificationText, @PathVariable String id) {
-		Notification notification = new Notification(notificationText);
+		Notification notification = new Notification();
+		notification.setText(notificationText);
 		Customer customer = this.customerService.getCustomerByApiId(id).get();
 		customer.getNotifications().add(notification);
 		this.customerService.save(customer);
