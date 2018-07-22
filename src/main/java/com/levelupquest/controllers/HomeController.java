@@ -76,4 +76,9 @@ public class HomeController {
 		this.customerService.save(customer);
 		return customer.getNotifications();
 	}
+	
+	@GetMapping(value = "/balance/{id}")
+	public double getBalance(@PathVariable String id) {
+		return this.customerService.getCustomerByApiId(id).get().getAllowanceAccount().getBalance();
+	}
 }

@@ -1,3 +1,7 @@
 button{
-  margin-bottom: 1%;
+  margin-bottom: 2%;
+  width:100%;
+  text-align:left;
+  font-size: 0.80rem;
+  background-color: #008a00;
 }
