@@ -23,7 +23,7 @@ export class Transaction {
   public source: string;
   public type: string;
   public success: boolean;
-  public successMessage: string;
+  public message: string;
 
   constructor(accountId: String, customerId: String, categoryTags: String[],
     description: String, currencyAmount: number, merchantName: string) {

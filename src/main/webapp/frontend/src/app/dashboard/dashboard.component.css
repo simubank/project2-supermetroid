@@ -12,7 +12,7 @@
 .circle-text {
     width:100%;
 }
-.col-xxs-3{ 
+.col-xxs-3{
     width:25%
 }
 .circle-text:after {
@@ -21,9 +21,9 @@
     width: 100%;
     height:0;
     padding-bottom: 100%;
-    background: rgba(96, 100, 97, 0.836); 
-    -moz-border-radius: 50%; 
-    -webkit-border-radius: 50%; 
+    background: rgba(96, 100, 97, 0.836);
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
     border-radius: 50%;
 }
 .circle-text div {
@@ -74,3 +74,5 @@
   background-color:#008a00;
   width:100%;
 }
+
+
