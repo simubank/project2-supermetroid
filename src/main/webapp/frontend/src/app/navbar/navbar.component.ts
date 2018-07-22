@@ -11,6 +11,7 @@ export class NavbarComponent {
 
   public notifications: any;
   public customer: any;
+  public newNotifications = false;
 
   constructor(private dataService: DataServiceService) {
       this.dataService.customerMessage.subscribe(
@@ -30,12 +31,5 @@ export class NavbarComponent {
     ((data) => {
       this.dataService.changeNotifications(data);
     });
-  }
-
-  sendBell() {
-    // do something
-  }
 }
-
-
-
+}

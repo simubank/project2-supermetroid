@@ -1,38 +1,7 @@
-<div isNotification=true>
-  <label ><b>2018-01-01</b></label>
-  <label style="font-size: 14px">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</label>
+<div *ngFor="let notification of notifications">
+  <div isNotification=true>
+    <label><b>{{notification.date}} </b></label>
+    <label style="font-size: 14px">{{notification.text}}</label>
+  </div>
+  <div style="height: 10px;"></div>
 </div>
-
-<div style="height: 10px;"></div>
-
-<div isNotification=true>
-  <label><b>2018-01-05</b></label>
-  <label style="font-size: 14px">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</label>
-</div>
-
-<div style="height: 10px;"></div>
-
-<div isNotification=true>
-  <label><b>2018-01-18</b></label>
-  <label style="font-size: 14px">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</label>
-</div>
-
-<div style="height: 10px;"></div>
-
-<div isNotification=true>
-  <label><b>2018-01-18</b></label>
-  <label style="font-size: 14px">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</label>
-</div>
-
-<div style="height: 10px;"></div>
-
-<div isNotification=true>
-  <label><b>2018-01-18</b></label>
-  <label style="font-size: 14px">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</label>
-  <ul>
-    <li *ngFor="let notification of notifications">
-      {{notification.text}}
-    </li>
-  </ul>
-</div>
-

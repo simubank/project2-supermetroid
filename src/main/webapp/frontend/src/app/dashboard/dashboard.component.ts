@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Customer } from '../model/Customer';
 import { DataServiceService } from '../data-service.service';
 
@@ -9,16 +9,16 @@ import { DataServiceService } from '../data-service.service';
 })
 
 
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
   @Output() valueChange = new EventEmitter() ;
-  public customer: any = '';
-  private currentBalance:number; 
+  public customer: any;
+  private currentBalance:number;
   private timeLeft:string;
-  private totalBalance:number; 
+  private totalBalance:number;
   private points:number;
-  private transaction: any[]; 
-  private icon:number; 
+  private transaction: any[];
+  private icon:number;
 
 
   public notification: string = null;
@@ -31,16 +31,17 @@ export class DashboardComponent implements OnInit {
       '63363738-f374-4490-83d4-be9bfba401f1_e2ba9727-a181-48f6-a1bc-0abf5ce173a2'
   ];
   constructor(private dataService: DataServiceService) {
-    this.currentBalance=99; 
-    this.totalBalance=100; 
-    this.timeLeft="2Days!"; 
+    this.currentBalance=99;
+    this.totalBalance=100;
+    this.timeLeft="2Days!";
     this.points=0;
-    this.icon=1; 
+    this.icon=1;
+    this.dataService.customerMessage.subscribe(
+      (newCustomer) => {
+        this.customer = newCustomer;
+      }
+    );
    }
-
-  ngOnInit() {
-    this.getCustomer(this.customerIds[0]);
-  }
 
 getCustomer(id: string) {
     this.dataService.searchAPI('/customers/' + id).subscribe
