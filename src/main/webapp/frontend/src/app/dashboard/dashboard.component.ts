@@ -37,10 +37,14 @@ export class DashboardComponent implements OnInit {
     this.timeLeft = '2Days!';
     this.points = 0;
     this.icon = 1;
+    this.dataService.customerMessage.subscribe(
+      (newCustomer) => {
+        this.customer = newCustomer;
+      }
+    );
    }
 
   ngOnInit() {
-    this.getCustomer(this.customerIds[0]);
     this.getCustomerDb(this.customerIds[1]);
   }
 
