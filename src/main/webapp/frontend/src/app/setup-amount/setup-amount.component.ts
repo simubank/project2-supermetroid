@@ -11,6 +11,7 @@ export class SetupAmountComponent implements OnInit {
 
 
   public customer: any;
+  public recommendedAmount: string;
   constructor(private dataService: DataServiceService) {
 
   }
