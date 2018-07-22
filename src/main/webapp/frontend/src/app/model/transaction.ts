@@ -22,14 +22,16 @@ export class Transaction {
   public postDate: string;
   public source: string;
   public type: string;
+  public success: boolean;
+  public successMessage: string;
 
-  constructor(accountId: String, customerId: String, categoryTags: String[], description: String, currencyAmount: number) {
+  constructor(accountId: String, customerId: String, categoryTags: String[],
+    description: String, currencyAmount: number, merchantName: string) {
       this.accountId = accountId;
       this.customerId = customerId;
       this.categoryTags = categoryTags;
       this.description = description;
       this.currencyAmount = currencyAmount;
-
-
+      this.merchantName = merchantName;
   }
 }

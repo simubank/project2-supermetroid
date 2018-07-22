@@ -13,6 +13,15 @@ export class DashboardComponent implements OnInit {
 
   @Output() valueChange = new EventEmitter() ;
   public customer: any = '';
+  public customerDb: any = null;
+  public currentBalance: number;
+  public timeLeft: string;
+  public totalBalance: number;
+  public points: number;
+  public transaction: any[];
+  public icon: number;
+
+
   public notification: string = null;
   public notificationClass: string = null;
   public showPayment = false;
@@ -23,10 +32,16 @@ export class DashboardComponent implements OnInit {
       '63363738-f374-4490-83d4-be9bfba401f1_e2ba9727-a181-48f6-a1bc-0abf5ce173a2'
   ];
   constructor(private dataService: DataServiceService) {
+    this.currentBalance = 99;
+    this.totalBalance = 100;
+    this.timeLeft = '2Days!';
+    this.points = 0;
+    this.icon = 1;
    }
 
   ngOnInit() {
     this.getCustomer(this.customerIds[0]);
+    this.getCustomerDb(this.customerIds[1]);
   }
 
 getCustomer(id: string) {
@@ -36,6 +51,15 @@ getCustomer(id: string) {
       this.customer = this.customer.result[0];
       this.dataService.changeCustomer(this.customer);
     });
+  }
+
+  getCustomerDb(id: string) {
+    this.dataService.searchDB('/customer/' + id).subscribe
+    ((data) => {
+        this.customerDb = data;
+    }
+
+    );
   }
 
   getNotifications(id: string) {
@@ -48,11 +72,17 @@ getCustomer(id: string) {
   switchCustomer(id: number) {
     this.getCustomer(this.customerIds[id]);
     this.getNotifications(this.customerIds[id]);
+    this.getCustomerDb(this.customerIds[id]);
   }
 displayNotification(notification: string) {
   const strings = notification.split(':');
   this.notificationClass = strings[0];
   this.notification = strings[1];
+}
+
+updateCustomer(customerDb: any) {
+  this.customerDb = customerDb;
+  // this.dataService.changeCustomer(customer);
 }
 disableNotification() {
   this.notification = null;

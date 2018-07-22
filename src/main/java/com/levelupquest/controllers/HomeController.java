@@ -1,6 +1,5 @@
 package com.levelupquest.controllers;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.levelupquest.entities.Customer;
 import com.levelupquest.entities.Notification;
+import com.levelupquest.entities.Track;
+import com.levelupquest.entities.Transaction;
 import com.levelupquest.services.CustomerService;
+import com.levelupquest.services.TransactionService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -24,6 +26,9 @@ public class HomeController {
 
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private TransactionService transactionService;
 
 	@GetMapping(value = "/home")
 	public Customer home() {
@@ -81,4 +86,16 @@ public class HomeController {
 	public double getBalance(@PathVariable String id) {
 		return this.customerService.getCustomerByApiId(id).get().getAllowanceAccount().getBalance();
 	}
+	
+	@PostMapping(value="/transaction/{id}") 
+	public Customer postTransaction(@PathVariable String id, @RequestBody Transaction transaction) {
+		Customer customer = this.customerService.getCustomerByApiId(id).get();
+		if(customer.getTrack() == null) customer.setTrack(new Track());
+		return this.transactionService.makePayment(customer, transaction);
+		
+		
+		
+		
+	}
+	
 }

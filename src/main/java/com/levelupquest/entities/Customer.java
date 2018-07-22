@@ -29,4 +29,9 @@ public class Customer {
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Notification> notifications;
 	
+	private int rewardPoints;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Track track = new Track();
+	
 }

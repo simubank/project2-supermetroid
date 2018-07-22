@@ -12,7 +12,10 @@ import { DataServiceService } from '../data-service.service';
 export class PaymentComponent  {
 
   @Output() notificationChange = new EventEmitter();
+  @Output() customerChange = new EventEmitter();
   @Input() customer: any;
+
+  private customerDb: any;
   private accountBalance: number;
   public notificationMessage: string;
 
@@ -28,25 +31,20 @@ export class PaymentComponent  {
 
 
   makePayment(index: string): any {
-    const transaction: Transaction = TransactionArray.getTransactions(this.customer)[index];
-      this.dataService.searchDB('/balance/' + this.customer.id).subscribe(
-        (balance) => {
+    let transaction: Transaction = TransactionArray.getTransactions(this.customer)[index];
 
-          if (balance >= transaction.currencyAmount) {
-
-              // transfer money
-              // post transaction
-
-          } else {
-            this.notificationMessage = 'Sorry! You don\'t have enough funds to process this transaction';
-             this.notificationChange.emit('alert alert-danger' + ':' + this.notificationMessage);
-            }
-        },
-        (error) => {
-            this.notificationMessage = 'Something went wrong, please try again';
-            this.notificationChange.emit(this.notificationMessage);
+    this.dataService.postDB('/transaction/' + this.customer.id, transaction).subscribe(
+      (customerDb) => {
+        this.customerDb = customerDb;
+        this.customerChange.emit(customerDb);
+        transaction = this.customerDb.allowanceAccount.transactions[this.customerDb.allowanceAccount.transactions.length - 1];
+        if (!transaction.success) {
+          // if transaction failed
+          this.notificationChange.emit('alert alert-danger' + ':' + transaction.successMessage);
         }
-      );
+      }
+    );
+
   }
 
 
