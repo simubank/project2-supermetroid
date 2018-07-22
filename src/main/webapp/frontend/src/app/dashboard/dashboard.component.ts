@@ -1,5 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Customer } from '../model/Customer';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { DataServiceService } from '../data-service.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { DataServiceService } from '../data-service.service';
 })
 
 
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
   @Output() valueChange = new EventEmitter() ;
   public customer: any = '';
@@ -42,11 +41,12 @@ export class DashboardComponent implements OnInit {
         this.customer = newCustomer;
       }
     );
+this.dataService.customerDBMessage.subscribe(
+      (newCustomer) => {
+        this.customerDb = newCustomer;
+      }
+    );
    }
-
-  ngOnInit() {
-    this.getCustomerDb(this.customerIds[1]);
-  }
 
 getCustomer(id: string) {
     this.dataService.searchAPI('/customers/' + id).subscribe
