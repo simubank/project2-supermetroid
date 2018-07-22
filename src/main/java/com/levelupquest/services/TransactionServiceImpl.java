@@ -18,16 +18,20 @@ public class TransactionServiceImpl implements TransactionService {
 	public Customer makePayment(Customer customer, Transaction transaction) {
 		if (customer.getAllowanceAccount().getBalance() >= transaction.getCurrencyAmount()) {
 			transaction.setSuccess(true);
+			transaction.setMessage("Transaction Successfull.");
 			// deduct money, change balance
 			customer.getAllowanceAccount()
 					.setBalance(calculateBalance(customer.getAllowanceAccount().getBalance(), transaction));
 
 			if (transaction.getCategoryTags().contains("GROCERY")) {
 				customer.setRewardPoints(calculateRewardPoints(transaction));
-				customer.getTrack().setGroceryAmount(transaction.getCurrencyAmount());
+				customer.getTrack().setGroceryAmount(
+						customer.getTrack().getRestaurantAmount() + transaction.getCurrencyAmount());
 				transaction.setMessage("Good job! Keep buying more groceries!");
 			}else if (transaction.getCategoryTags().contains("RESTAURANT")) {
-				customer.getTrack().setRestaurantAmount(transaction.getCurrencyAmount());
+				customer.getTrack().setRestaurantAmount(
+						customer.getTrack().getRestaurantAmount() + transaction.getCurrencyAmount());
+				
 			}else {
 				customer.getTrack().setOtherAmount(transaction.getCurrencyAmount());
 			}
@@ -40,10 +44,14 @@ public class TransactionServiceImpl implements TransactionService {
 			}
 			
 			//check if he has spent half of his money on eating out
-			if(customer.getTrack().getRestaurantAmount() <= customer.getAllowanceAccount().getAllowance() / 2) {
+			if(customer.getTrack().getRestaurantAmount() >= customer.getAllowanceAccount().getAllowance() / 2) {
 				transaction.setMessage("You've spent more than half of your "
-						+ "money on eating out. Please focus on buying groceries now");
+						+ "money on eating out. Please try to purchase more groceries now.");
 			}
+			//set balance in transaction
+			transaction.setPostBalance(customer.getAllowanceAccount().getBalance());
+			
+			//if they have days left and no money
 			
 			
 
