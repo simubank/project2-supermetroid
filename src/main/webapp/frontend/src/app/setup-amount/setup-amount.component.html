@@ -1,36 +1,48 @@
-
 <form>
   <div class="form-group">
-    <label>Start Date - {{customer.givenName}} </label>
-    <input class="form-control" id="exampleFormControlInput1" placeholder="Jul 21st, 2018" disabled>
+      <label>Savings Start Date - {{customer.givenName}} </label>
+      <textarea class="form-control" style="background-color: white;" disabled>Jul 21st, 2018 </textarea>
   </div>
+
   <div class="form-group">
       <label>Set Income (CAD)</label>
-      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="40,000">
-    </div>
+      <input class="form-control" placeholder="40,000">
+  </div>
+
+  <div class="form-group">
+      <label>Set #### Budget</label>
+      <input class="form-control" placeholder="Suggested: $400">
+  </div>
 
   <div class="form-group">
       <label for="TimeFrame" isRight=true>Savings Time Frame</label>
       <div class="slidecontainer">
         <input type="range" min="1" max="4" class="slider" id="myTimeRange">
         <label isOption=true style="width:15%;">Daily</label>
-        <label isOption=true style="width:30%;">Weekly</label>
+        <label isOption=true style="width:32%;">Weekly</label>
         <label isOption=true style="width:30%;">Bi-Weekly</label>
-        <label isOption=true style="width:25%">Monthly</label>
+        <label isOption=true style="width:23%">Monthly</label>
       </div>
   </div>
+
   <div class="form-group">
-    <label for="exampleFormControlSelect2">Example multiple select</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
+    <label style="width: 45%; padding-top: 1vh;">Funding Account</label>
+    <div class="dropdown" style="float:right; width: 53%;">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="height:6vh; color: black; background-color: white; border: 0; outline: none;">Chequeing ####</button>
+      <ul class="dropdown-menu" style="padding-left: 5vw; padding-right: 5vw;">
+        <li>Chequeing ####</li>
+        <li>Savings ####</li>
+      </ul>
+    </div>
   </div>
+
   <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <textarea class="form-control" style="background-color: white;" disabled>Balance: </textarea>
   </div>
+
+  <div class="form-group" style="padding-top: 3vh;">
+    <button type="button" class="btn btn-light" style="float: right; padding-left: 5vw; padding-right: 5vw; background-color: rgba(255, 255, 255, 0.897);">Save</button>
+  </div>
+
+
 </form>

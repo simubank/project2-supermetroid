@@ -1,6 +1,6 @@
 .form-group{
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right: 5vw;
+    padding-left: 5vw;
 }
 .form-control{
     height:6vh;
@@ -45,4 +45,13 @@ label[isOption=true]{
     font-size: 2vh;
     color: grey;
     text-align:right;
+}
+p[isWhite=true]{
+    background-color: white;
+    padding-right: 5vw;
+    padding-left: 5vw;
+}
+li{
+    padding-top:1vh;
+    padding-bottom:1vh;
 }
