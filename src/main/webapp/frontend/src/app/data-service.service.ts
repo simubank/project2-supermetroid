@@ -26,7 +26,7 @@ export class DataServiceService {
   notificationsMessage = this.notificationsSource.asObservable();
 
   private customerDBSource = new BehaviorSubject(new Object());
-  cutomerDBMessage = this.customerDBSource.asObservable();
+  customerDBMessage = this.customerDBSource.asObservable();
 
   changeCustomer(customer: any) {
     this.customerSource.next(customer);
