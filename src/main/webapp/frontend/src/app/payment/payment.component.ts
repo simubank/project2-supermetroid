@@ -41,6 +41,10 @@ export class PaymentComponent  {
         if (!transaction.success) {
           // if transaction failed
           this.notificationChange.emit('alert alert-danger' + ':' + transaction.message);
+        } else {
+            if (transaction.message) {
+              this.notificationChange.emit('alert alert-success' + ':' + transaction.message);
+            }
         }
       }
     );
