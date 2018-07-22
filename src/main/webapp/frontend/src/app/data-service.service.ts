@@ -5,6 +5,7 @@ import {HttpHeaders} from '@angular/common/http';
 import {HttpClient} from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Customer } from './model/Customer';
+import { Transaction } from './model/transaction';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,13 @@ export class DataServiceService {
     .pipe(
       map(response => response.json())
       );
+    }
+
+    postDB(url: string, transaction: Transaction) {
+    return this.http.post(this.javaApi + url, transaction)
+      .pipe(
+              map(response => response.json())
+        );
     }
      searchAPI (url: string) {
       const headers = new HttpHeaders({
