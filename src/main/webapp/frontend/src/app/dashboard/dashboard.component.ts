@@ -49,7 +49,6 @@ getCustomer(id: string) {
     this.getCustomer(this.customerIds[id]);
     this.getNotifications(this.customerIds[id]);
   }
-
 displayNotification(notification: string) {
   const strings = notification.split(':');
   this.notificationClass = strings[0];
