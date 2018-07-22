@@ -12,13 +12,29 @@ export class SetupAmountComponent implements OnInit {
 
   public customer: any;
   public recommendedAmount: string;
+  public hasSavings: boolean;
+  public timeFrame: Array<String>;
+  public sliderVal: number;
+  public account: string;
   constructor(private dataService: DataServiceService) {
 
   }
 
   ngOnInit() {
+    this.account = "Chequeing";
+    this.hasSavings = true;
+    this.timeFrame = ['Daily', 'Weekly', 'Bi-Weekly', 'Monthly' ];
     this.dataService.customerMessage.subscribe(
       (customer) => this.customer = customer);
   }
+  
+  onClickChequeing() {
+    this.account = 'Chequeing';
+  }
+
+  onClickSavings() {
+    this.account = 'Savings';
+  }
+  
 
 }
