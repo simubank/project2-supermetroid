@@ -1,0 +1,10 @@
+div[isNotification=true]{
+    background-color: white;
+    border-top: 1px solid rgb(211, 211, 211);
+    border-bottom: 1px solid rgb(211, 211, 211);
+    padding: bottom left 5px;
+}
+label{
+    padding-left: 5vw;
+    padding-right: 5vw;
+}

@@ -24,9 +24,5 @@ public class Notification {
 	
 	private LocalDate date = LocalDate.now();
 	
-	public Notification(String text) {
-		this.text = text;
-	}
-	
 }
 
