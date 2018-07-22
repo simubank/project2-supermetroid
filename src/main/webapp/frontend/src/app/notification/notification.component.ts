@@ -1,3 +1,4 @@
+import { DataServiceService } from './../data-service.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,11 +6,21 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.css']
 })
-export class NotificationComponent implements OnInit {
+export class NotificationComponent {
 
-  constructor() { }
-
-  ngOnInit() {
+  public notifications: any;
+  public customer: any;
+  public oldCustomer: any;
+  constructor(private dataService: DataServiceService) {
+    this.dataService.customerMessage.subscribe(
+      (newCustomer) => {
+        this.customer = newCustomer;
+      }
+    );
+    this.dataService.notificationsMessage.subscribe(
+      (newNotifications) => {
+        this.notifications = newNotifications;
+      }
+    );
   }
-
 }

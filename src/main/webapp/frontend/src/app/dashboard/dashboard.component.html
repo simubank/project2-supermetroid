@@ -1,21 +1,90 @@
-
 <div class="container">
 
+	<div *ngIf="notification != null">
+		<div class="alert {{notificationClass}} alert-dismissible fade show">
+			{{notification}}
+			<button type="button" class="close" aria-label="Close" (click)="disableNotification()">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
 
-
-Welcome {{customer.givenName}}, {{customer.surname}}
-
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{customer.givenName}}
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" (click)="switchCustomer(0)">Customer 1</a>
-    <a class="dropdown-item" (click)="switchCustomer(1)">Customer 2</a>
-    <a class="dropdown-item" (click)="switchCustomer(2)">Customer 3</a>
   </div>
-</div>
-</div>
-  <!-- <app-payment [customer] = "customer"> </app-payment> -->
+
+  <div class=" row ">
+      <p class="col-7 welcome">Hi! {{customer.givenName}}, {{customer.surname}} </p>
+      <div class="dropdown col-5">
+          <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+           aria-expanded="false">
+            {{customer.givenName}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" (click)="switchCustomer(0)">Customer 1</a>
+            <a class="dropdown-item" (click)="switchCustomer(1)">Customer 2</a>
+            <a class="dropdown-item" (click)="switchCustomer(2)">Customer 3</a>
+          </div>
+        </div>
+      </div>
+  </div>
 
 
+
+<div class="container">
+	<div class="space"></div>
+	<div class="row" *ngIf="customerDb.allowanceAccount">
+
+		<div class="col-xxs-3 col-lg-3">
+				<div class="summary">Points</div>
+			<div class="circle-text">
+				<div>{{customerDb.rewardPoints}}</div>
+			</div>
+		</div>
+		<div class="col-xxs-3 col-lg-3">
+				<div class="summary">Current Bal</div>
+			<div class="circle-text">
+				<div>${{customerDb.allowanceAccount.balance}}</div>
+			</div>
+		</div>
+		<div class="col-xxs-3 col-lg-3">
+			<div class="summary">Total Allowance</div>
+			<div class="circle-text">
+				<div>${{customerDb.allowanceAccount.allowance}}</div>
+			</div>
+		</div>
+		<div class="col-xxs-3 col-lg-3">
+				<div class="summary">Days Left</div>
+			<div class="circle-text">
+				<div>{{timeLeft}}</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="row">
+		<div class="col-xs-3 col-lg-3">
+			<div class="space"></div>
+			<div class="card">
+				<div class="card-header"> <h5> Your Transactions </h5></div>
+				<div class="card-body">
+					<table class="table" *ngIf="customerDb.allowanceAccount">
+						<tr>
+							<th>Merchant Name</th>
+              <th>Amount</th>
+              <th>Account Balance</th>
+						</tr>
+						<tr *ngFor="let trans of customerDb.allowanceAccount.transactions">
+							<ng-container *ngIf="trans.success">
+								<td>{{trans.merchantName}}</td>
+                <td> ${{trans.currencyAmount}}</td>
+                <td> ${{trans.postBalance}}</td>
+							</ng-container>
+						</tr>
+					</table>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<button class="btn btn-success paymentButton" (click)="togglePayment()"> {{paymentText}} </button>
+</div>
+<footer *ngIf="showPayment">
+	<app-payment [customer]="customer" (notificationChange)="displayNotification($event)" (customerChange)="updateCustomer($event)"> </app-payment>
+</footer>

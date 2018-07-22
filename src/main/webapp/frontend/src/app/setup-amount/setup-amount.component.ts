@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataServiceService } from '../data-service.service';
 
+
 @Component({
   selector: 'app-setup-amount',
   templateUrl: './setup-amount.component.html',
@@ -10,6 +11,7 @@ export class SetupAmountComponent implements OnInit {
 
 
   public customer: any;
+  public recommendedAmount: string;
   public hasSavings: boolean;
   public timeFrame: Array<String>;
   public sliderVal: number;
@@ -22,10 +24,10 @@ export class SetupAmountComponent implements OnInit {
     this.account = "Chequeing";
     this.hasSavings = true;
     this.timeFrame = ['Daily', 'Weekly', 'Bi-Weekly', 'Monthly' ];
-    this.dataService.currentMessage.subscribe(
+    this.dataService.customerMessage.subscribe(
       (customer) => this.customer = customer);
   }
-
+  
   onClickChequeing() {
     this.account = 'Chequeing';
   }

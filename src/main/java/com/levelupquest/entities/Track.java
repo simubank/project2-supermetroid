@@ -1,6 +1,6 @@
 package com.levelupquest.entities;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,15 +14,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Notification {
+public class Track implements Serializable{
 
 	@Id
 	@GeneratedValue
 	private int id;
 	
-	private String text;
+	private long groceryAmount;
+	private long restaurantAmount;
 	
-	private LocalDate date = LocalDate.now();
-	
+	private long otherAmount;
 }
-
