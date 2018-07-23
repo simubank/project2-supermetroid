@@ -1,42 +1,23 @@
-.property{
-    text-align: center;
-}
 .card{
     background-color: rgb(255, 255, 255);
     margin-left: auto; margin-right: auto;
-
+}
+.tableFont  {
+   font-size: 50% 
 }
 .card-body{
     color: rgb(48, 44, 44);
 }
-.circle-text {
-    width:100%;
-}
-.col-xxs-3{
-    width:25%
-}
-.circle-text:after {
-    content: "";
-    display: block;
-    width: 100%;
-    height:0;
-    padding-bottom: 100%;
-    background: rgba(96, 100, 97, 0.836);
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
+.btn-outline-secondary{
     border-radius: 50%;
-    font-size: 80%
 }
-.circle-text div {
-    float:left;
-    width:30%;
-    padding-top:30%;
-    padding-left: 25%;
+.table{
+    border-width: 0;
     line-height:1em;
-    margin-top:-0.5em;
-    text-align:center;
-    color:white;
-    font-size: 30%
+}
+.table{
+    min-width: 100%;
+    table-layout: fixed;
 }
 .button {
     background-color: rgb(31, 95, 33); /* Green */
@@ -49,120 +30,14 @@
     font-size: 16px;
     box-shadow: dimgray
 }
-.button5 {border-radius: 2px;}
 .space {
     margin-top: 2em
 }
-.summary{
-    color: rgb(48, 44, 44);
-    font-size: 20px;
-}
 .welcome {
     color: rgb(70, 72, 73);
     font-size: 20px;
+    font-weight: bold; 
 }
-
-/* footer{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  line-height: 60px;
-} */
-
-.paymentButton{
-  margin-top:1%;
-  background-color:#008a00;
-  width:100%;
-}
-
-
-.property{
-    text-align: center;
-}
-.welcome{
-  font-weight:600;
-}
-.card{
-    background-color: rgb(255, 255, 255);
-    margin-left: auto; margin-right: auto;
-
-}
-.card-body{
-    color: rgb(48, 44, 44);
-}
-
-.card-header{
-  text-align:center;
-}
-.circle-text {
-    width:100%;
-}
-.col-xxs-3{
-    width:25%
-}
-.circle-text:after {
-    content: "";
-    display: block;
-    width: 100%;
-    height:0;
-    padding-bottom: 100%;
-    background: rgba(96, 100, 97, 0.836);
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    font-size: 80%
-
-}
-.round{
-  border-radius:70%;
-width:80%;
-text-align:center;
-
-}
-.circle-text div {
-    float:left;
-    width:30%;
-    padding-top:50%;
-    padding-left: 25%;
-    line-height:1em;
-    margin-top:-0.5em;
-    text-align:center;
-    color:white;
-}
-.button {
-    background-color: rgb(31, 95, 33); /* Green */
-    border: none;
-    color: white;
-    padding: 0px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 200px;
-    box-shadow: dimgray
-}
-.button5 {border-radius: 2px;}
-.space {
-    margin-top: 2em;
-}
-.summary{
-    color: rgb(48, 44, 44);
-    font-size: 10px;
-    align-self: auto;
-}
-.welcome {
-    color: rgb(70, 72, 73);
-    font-size: 20px;
-}
-
-/* footer{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  line-height: 60px;
-} */
-
 .paymentButton{
   margin-top:1%;
   background-color:#008a00;
