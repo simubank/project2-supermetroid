@@ -26,12 +26,13 @@ export class SetupAmountComponent implements OnInit {
   public timePeriod: string;
   public allowance:number;
   public divideBy:number=12; 
+  public dateInClass:any;
   constructor(private dataService: DataServiceService) {
     
   }
   dateLogic(){ 
 
-    this.startDate=new Date(this.startDate);
+    this.startDate=new Date(this.dateInClass);
     console.log(this.startDate);
     if(this.slide==1){ 
       this.endDate.setDate(this.startDate.getDate()+2);
