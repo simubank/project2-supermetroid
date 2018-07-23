@@ -20,7 +20,7 @@
   <div class="form-group">
       <label for="TimeFrame" isRight=true>Savings Time Frame</label>
       <div class="slidecontainer">
-        <input type="range" min="1" max="4" class="slider" id="myTimeRange" [(ngModel)]="slide" >
+        <input type="range" min="1" max="4" class="slider" id="myTimeRange" [(ngModel)]="slide" (ngModelChange)="dateLogic()" >
         <label isOption=true style="width:15%;">Daily</label>
         <label isOption=true style="width:32%;">Weekly</label>
         <label isOption=true style="width:30%;">Bi-Weekly</label>
@@ -31,9 +31,9 @@
   <div class="form-group">
     <label style="width: 45%; padding-top: 1vh;">Funding Account</label>
     <div class="dropdown" style="float:right; width: 53%;">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="height:6vh; color: black; background-color: white; border: 0; outline: none;">Chequeing ####</button>
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="height:6vh; color: black; background-color: white; border: 0; outline: none;">{{account}}</button>
       <ul class="dropdown-menu" style="padding-left: 5vw; padding-right: 5vw;">
-         <li (click)="onClickChequeing()"> Chequeing</li>
+        <li (click)="onClickChequeing()"> Chequing</li>
         <li (click)="onClickSavings()"> Savings</li>
       </ul>
     </div>

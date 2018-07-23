@@ -24,6 +24,7 @@ export class SetupAmountComponent implements OnInit {
   public endDate=new Date();
   public timePeriod: string;
   public allowance:number;
+  public divideBy:number=12; 
   constructor(private dataService: DataServiceService) {
     
   }
@@ -34,20 +35,28 @@ export class SetupAmountComponent implements OnInit {
     if(this.slide==1){ 
       this.endDate.setDate(this.startDate.getDate()+2);
       this.timePeriod="DAILY";
+      this.divideBy=365;
+      this.calculateValue();
     }
     else if( this.slide ==2)
     {
       this.endDate.setDate(this.startDate.getDate()+7); 
       this.timePeriod="WEEKLY";
+      this.divideBy=52;
+      this.calculateValue();
     }
     else if (this.slide==3)
     {
       this.endDate.setDate(this.startDate.getDate()+14); 
       this.timePeriod="BI-WEEKLY";
+      this.divideBy=26;
+      this.calculateValue();
     }
     else if (this.slide==4){
       this.endDate.setDate(this.startDate.getDate()+30);
       this.timePeriod="MONTHLY";
+      this.divideBy=12;
+      this.calculateValue();
     }
 
     const allowanceAccount = {
@@ -70,19 +79,19 @@ export class SetupAmountComponent implements OnInit {
     
     if(this.customer.habitationStatus=="rent"){
       let Y = 0.07874+0.02363*0; 
-      this.suggestedBudget=this.income*Y;
+      this.suggestedBudget=(this.income*Y)/this.divideBy;
     }
     else if (this.customer.habitationStatus=="sharingrent"){
       let Y = 0.07874+0.02363*1; 
-      this.suggestedBudget=this.income*Y;
+      this.suggestedBudget=(this.income*Y)/this.divideBy;
     }
     else if ( this.customer.habitationStatus=="rentfree"){
       let Y = 0.07874+0.02363*2; 
-      this.suggestedBudget=this.income*Y;
+      this.suggestedBudget=(this.income*Y)/this.divideBy;
     }
   }
   onClickChequeing() {
-    this.account = 'Chequeing';
+    this.account = 'Chequing';
   }
 
   onClickSavings() {
@@ -93,6 +102,7 @@ export class SetupAmountComponent implements OnInit {
     this.dataService.customerMessage.subscribe(
         (customer) => {
           this.customer = customer;
+          this.account = "Chequing";
           if(this.customer.habitationStatus=="rent"){
             let Y = 0.07874+0.02363*0; 
             this.suggestedBudget=this.income*Y;
