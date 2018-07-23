@@ -80,6 +80,9 @@
 .property{
     text-align: center;
 }
+.welcome{
+  font-weight:600;
+}
 .card{
     background-color: rgb(255, 255, 255);
     margin-left: auto; margin-right: auto;
@@ -88,10 +91,14 @@
 .card-body{
     color: rgb(48, 44, 44);
 }
+
+.card-header{
+  text-align:center;
+}
 .circle-text {
     width:100%;
 }
-.col-xxs-3{ 
+.col-xxs-3{
     width:25%
 }
 .circle-text:after {
@@ -100,11 +107,17 @@
     width: 100%;
     height:0;
     padding-bottom: 100%;
-    background: rgba(96, 100, 97, 0.836); 
-    -moz-border-radius: 50%; 
-    -webkit-border-radius: 50%; 
+    background: rgba(96, 100, 97, 0.836);
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
     border-radius: 50%;
     font-size: 80%
+
+}
+.round{
+  border-radius:70%;
+width:80%;
+text-align:center;
 
 }
 .circle-text div {
@@ -130,7 +143,7 @@
 }
 .button5 {border-radius: 2px;}
 .space {
-    margin-top: 2em; 
+    margin-top: 2em;
 }
 .summary{
     color: rgb(48, 44, 44);

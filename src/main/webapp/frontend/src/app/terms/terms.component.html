@@ -16,9 +16,9 @@
       <!-- FIGURE A WAY TO DISABLE SUBMIT BTN WHEN RADIO BOX IS NOT CLICKED-->
       <div style="padding-top: 5px">
         <label>
-            <input type="checkbox" ng-model="checked"/> Agree with the terms and conditions
+            <input type="checkbox" ng-model="aggreed"/> Agree with the terms and conditions
         </label>
-        <button ng-click="submit()" ng-disabled="checked">Submit</button>
+        <button ng-click="submit()" ng-disabled="aggreed" routerLink="/settings" >Submit</button>
       </div>
     </div>
   </div>

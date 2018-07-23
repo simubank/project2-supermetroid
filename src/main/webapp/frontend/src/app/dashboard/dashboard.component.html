@@ -8,77 +8,77 @@
 			</button>
 		</div>
 
-	</div>
-	<p class="welcome">Welcome {{customer.givenName}}, {{customer.surname}} </p>
+  </div>
 
-	<div class="dropdown">
-		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-		 aria-expanded="false">
-			{{customer.givenName}}
-		</button>
-		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			<a class="dropdown-item" (click)="switchCustomer(0)">Customer 1</a>
-			<a class="dropdown-item" (click)="switchCustomer(1)">Customer 2</a>
-			<a class="dropdown-item" (click)="switchCustomer(2)">Customer 3</a>
-		</div>
-	</div>
-</div>
+  <div class="row">
+      <p class="col-7 welcome">Hi! {{customer.givenName}}, {{customer.surname}} </p>
+      <div class="dropdown col-5">
+          <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+           aria-expanded="false">
+            {{customer.givenName}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" (click)="switchCustomer(0)">Customer 1</a>
+            <a class="dropdown-item" (click)="switchCustomer(1)">Customer 2</a>
+            <a class="dropdown-item" (click)="switchCustomer(2)">Customer 3</a>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+
 <div class="container">
-<!--
-	<div class="summary"> Summary: You are status is good
 
-		<img src="../../assets/1.png" *ngIf="icon ==1">
-		<img src="../../assets/2.png" *ngIf="icon ==2">
-		<img src="../../assets/3.png" *ngIf="icon ==3">
-	</div> -->
-	<div class="space"></div>
-	<div class="row">
-		
+	<div class="row" *ngIf="customerDb.allowanceAccount">
+
 		<div class="col-xxs-3 col-lg-3">
 				<div class="summary">Points</div>
-			<div class="circle-text">		
+			<div class="circle-text">
 				<div>{{customerDb.rewardPoints}}</div>
 			</div>
 		</div>
 		<div class="col-xxs-3 col-lg-3">
 				<div class="summary">Current Bal</div>
 			<div class="circle-text">
-				<div>{{customerDb.allowanceAccount.balance}}</div>
+				<div>${{customerDb.allowanceAccount.balance}}</div>
 			</div>
 		</div>
 		<div class="col-xxs-3 col-lg-3">
-			<div class="summary">Total Bal</div>
+			<div class="summary">Total Allowance</div>
 			<div class="circle-text">
-				<div>{{customerDb.allowanceAccount.allowance}}</div>
+				<div>${{customerDb.allowanceAccount.allowance}}</div>
 			</div>
 		</div>
 		<div class="col-xxs-3 col-lg-3">
-				<div class="summary">Time Left</div>
+				<div class="summary">Days Left</div>
 			<div class="circle-text">
 				<div>{{timeLeft}}</div>
 			</div>
 		</div>
-		
+
 	</div>
 	<div class="row">
 		<div class="col-xs-3 col-lg-3">
 			<div class="space"></div>
 			<div class="card">
-				<div class="card-header">Transaction</div>
+				<div class="card-header"> <h5> Your Transactions </h5></div>
 				<div class="card-body">
-					<table class="table">
-						<tr> 
+					<table class="table" *ngIf="customerDb.allowanceAccount">
+						<tr>
 							<th>Merchant Name</th>
-							<th>Amount</th>
+              <th>Amount</th>
+              <th>Account Balance</th>
 						</tr>
-						<tr *ngFor="let trans of customerDb.allowanceAccount.transactions"> 
+						<tr *ngFor="let trans of customerDb.allowanceAccount.transactions">
 							<ng-container *ngIf="trans.success">
 								<td>{{trans.merchantName}}</td>
-								<td> {{trans.currencyAmount}}</td>
+                <td> ${{trans.currencyAmount}}</td>
+                <td> ${{trans.postBalance}}</td>
 							</ng-container>
 						</tr>
-					</table> 
-					
+					</table>
+
 				</div>
 			</div>
 		</div>

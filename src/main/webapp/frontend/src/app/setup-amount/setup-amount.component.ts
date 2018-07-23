@@ -10,6 +10,10 @@ import { detachEmbeddedView } from '../../../node_modules/@angular/core/src/view
 })
 export class SetupAmountComponent implements OnInit {
 
+  public hasSavings: boolean;
+  public timeFrame: Array<String>;
+  public sliderVal: number;
+  public account: string;
   public suggestedBudget:any; 
   public customer: any;
   public recommendedAmount: string;
@@ -77,9 +81,14 @@ export class SetupAmountComponent implements OnInit {
       this.suggestedBudget=this.income*Y;
     }
   }
-  slider(){ 
-
+  onClickChequeing() {
+    this.account = 'Chequeing';
   }
+
+  onClickSavings() {
+    this.account = 'Savings';
+  }
+  
   ngOnInit() {
     this.dataService.customerMessage.subscribe(
         (customer) => {
