@@ -13,12 +13,13 @@ export class SetupAmountComponent implements OnInit {
   public hasSavings: boolean;
   public timeFrame: Array<String>;
   public sliderVal: number;
-  public account: string;
+  public chequingAccount: string;
+  public savingsAccount: string;
   public suggestedBudget:any; 
   public customer: any;
   public recommendedAmount: string;
   public constMult= 0.07874+0.02363;
-  public income:number=5; 
+  public income:number; 
   public slide:any; 
   public startDate:any; 
   public endDate=new Date();
@@ -90,19 +91,29 @@ export class SetupAmountComponent implements OnInit {
       this.suggestedBudget=(this.income*Y)/this.divideBy;
     }
   }
-  onClickChequeing() {
-    this.account = 'Chequing';
+  onClickChequing1() {
+    this.chequingAccount = 'Chequing1';
   }
 
-  onClickSavings() {
-    this.account = 'Savings';
+  onClickChequing2() {
+    this.chequingAccount = 'Chequing2';
   }
+
+  onClickSavings1() {
+    this.savingsAccount = 'Savings1';
+  }
+
+  onClickSavings2() {
+    this.savingsAccount = 'Savings2';
+  }
+
   
   ngOnInit() {
     this.dataService.customerMessage.subscribe(
         (customer) => {
           this.customer = customer;
-          this.account = "Chequing";
+          this.chequingAccount = "Chequing1";
+          this.savingsAccount = "Savings1";
           if(this.customer.habitationStatus=="rent"){
             let Y = 0.07874+0.02363*0; 
             this.suggestedBudget=this.income*Y;

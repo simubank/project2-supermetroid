@@ -7,11 +7,9 @@
   <div class="form-group">
       <label>Set Income (CAD)</label>
       <input [(ngModel)]="income" class="form-control" placeholder="40,000" type="text" (ngModelChange)="calculateValue()">
-  </div>
+      <label>Suggested Allowance: ${{suggestedBudget | number : 0}}</label>
+    </div>
 
-  <div class="form-group">
-      <label>Suggested Allowance {{suggestedBudget}}</label>
-  </div>
   <div class="form-group">
     <label>Your Allowance</label>
     <input class="form-control" type="number" [(ngModel)]="allowance" >
@@ -29,18 +27,29 @@
   </div>
 
   <div class="form-group">
-    <label style="width: 45%; padding-top: 1vh;">Funding Account</label>
+    <label style="width: 45%; padding-top: 1vh;">Fundings Account</label>
     <div class="dropdown" style="float:right; width: 53%;">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="height:6vh; color: black; background-color: white; border: 0; outline: none;">{{account}}</button>
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="height:6vh; color: black; background-color: white; border: 0; outline: none; width: 80%;">{{chequingAccount}}</button>
       <ul class="dropdown-menu" style="padding-left: 5vw; padding-right: 5vw;">
-        <li (click)="onClickChequeing()"> Chequing</li>
-        <li (click)="onClickSavings()"> Savings</li>
+        <li (click)="onClickChequing1()"> Chequing1</li>
+        <li (click)="onClickChequing2()"> Chequing2</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label style="width: 45%; padding-top: 1vh;">Savings Account</label>
+    <div class="dropdown" style="float:right; width: 53%;">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="height:6vh; color: black; background-color: white; border: 0; outline: none; width: 80%;">{{savingsAccount}}</button>
+      <ul class="dropdown-menu" style="padding-left: 5vw; padding-right: 5vw;">
+        <li (click)="onClickSavings1()"> Savings1</li>
+        <li (click)="onClickSavings2()"> Savings2</li>
       </ul>
     </div>
   </div>
 
 
-  <div class="form-group" style="padding-top: 3vh;">
+  <div class="form-group" style="padding-top: 1vh;">
     <a routerLink="/dashboard" role="button" class="btn btn-secondary" style="float: right; padding-left: 5vw; padding-right: 5vw;" (click)="dateLogic()">Save</a>
   </div>
 
