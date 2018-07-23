@@ -1,23 +1,26 @@
-<form>
+
   <div class="form-group">
       <label>Savings Start Date - {{customer.givenName}} </label>
-      <textarea class="form-control" style="background-color: white;" disabled>Jul 21st, 2018 </textarea>
+      <input class="form-control" style="background-color: white;" type="date" [(ngModel)]="startDate">
   </div>
 
   <div class="form-group">
       <label>Set Income (CAD)</label>
-      <input class="form-control" placeholder="40,000">
+      <input [(ngModel)]="income" class="form-control" placeholder="40,000" type="text" (ngModelChange)="calculateValue()">
   </div>
 
   <div class="form-group">
-      <label>Set #### Budget</label>
-      <input class="form-control" placeholder="Suggested: $400">
+      <label>Suggested Allowance {{suggestedBudget}}</label>
   </div>
+  <div class="form-group">
+    <label>Your Allowance</label>
+    <input class="form-control" type="number" [(ngModel)]="allowance" >
+</div>
 
   <div class="form-group">
       <label for="TimeFrame" isRight=true>Savings Time Frame</label>
       <div class="slidecontainer">
-        <input type="range" min="1" max="4" class="slider" id="myTimeRange">
+        <input type="range" min="1" max="4" class="slider" id="myTimeRange" [(ngModel)]="slide" >
         <label isOption=true style="width:15%;">Daily</label>
         <label isOption=true style="width:32%;">Weekly</label>
         <label isOption=true style="width:30%;">Bi-Weekly</label>
@@ -36,13 +39,8 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <textarea class="form-control" style="background-color: white;" disabled>Balance: </textarea>
-  </div>
 
   <div class="form-group" style="padding-top: 3vh;">
-    <button type="button" class="btn btn-light" style="float: right; padding-left: 5vw; padding-right: 5vw; background-color: rgba(255, 255, 255, 0.897);">Save</button>
+    <a routerLink="/dashboard" role="button" class="btn btn-secondary" style="float: right; padding-left: 5vw; padding-right: 5vw;" (click)="dateLogic()">Save</a>
   </div>
 
-
-</form>

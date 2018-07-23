@@ -4,7 +4,6 @@ import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 import {HttpHeaders} from '@angular/common/http';
 import {HttpClient} from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { Customer } from './model/Customer';
 import { Transaction } from './model/transaction';
 
 @Injectable({
@@ -58,6 +57,13 @@ export class DataServiceService {
 
     }
 
+    
+    postAccount(url: string, account: any) {
+      return this.http.post(this.javaApi + url, account)
+        .pipe(
+                map(response => response.json())
+          );
+      }
 
 
 }
