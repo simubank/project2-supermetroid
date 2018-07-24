@@ -25,7 +25,7 @@
         </div>
       </div>
 
-		<table class="table">
+		<table class="table" *ngIf="customerDb.allowanceAccount">
 			<tr>
 				<td class="tableFont">Points</td>
 				<td class="tableFont">Balance</td>
@@ -49,7 +49,7 @@
 			</tr>
 		</table>
 
-	<div class="container">
+	<div class="container" *ngIf="customerDb.allowanceAccount">
       <hr>
     <div class="row">
       <div class="col-1">
@@ -82,7 +82,7 @@
         Savings Account Balance
       </div>
       <div class="col-2">
-          ${{customerDb.track.groceryAmount}}
+          ${{savingsAccountBalance}}
        </div>
     </div>
 
@@ -113,6 +113,8 @@
 	</div>
 	<button class="btn btn-success paymentButton" (click)="togglePayment()"> {{paymentText}} </button>
 </div>
+
 <footer *ngIf="showPayment">
 	<app-payment [customer]="customer" (notificationChange)="displayNotification($event)" (customerChange)="updateCustomer($event)"> </app-payment>
 </footer>
+
