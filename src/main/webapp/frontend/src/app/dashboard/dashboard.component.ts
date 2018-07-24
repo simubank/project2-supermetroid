@@ -20,8 +20,9 @@ export class DashboardComponent implements OnInit {
   public points: number;
   public transaction: any[];
   public icon: number;
+  public savingsAccountBalance: number;
 
-  public showTrans = false;
+  public showTrans = true;
 
   public notification: string = null;
   public notificationClass: string = null;
@@ -70,6 +71,14 @@ getCustomer(id: string) {
       this.customer = data;
       this.customer = this.customer.result[0];
       this.dataService.changeCustomer(this.customer);
+      const savingsAccountId = this.customer['maskedRelatedBankAccounts'].individual[1].accountId;
+      if (savingsAccountId != null) {
+        this.dataService.searchAPI('/accounts/' + savingsAccountId).subscribe(
+          (account) => {
+              this.savingsAccountBalance = account['result']['bankAccount']['balance'];
+          }
+        );
+      }
     });
   }
 
