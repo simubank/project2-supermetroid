@@ -6,7 +6,7 @@
 <h6>Hi {{customer.givenName}}, What would you like to purchase? </h6>
       <div class="row">
         <div class="col-6">
-            <button type="button" class="btn btn-success" (click) ="makePayment(0)" >Buy a coffee - $1.99</button>
+            <button type="button" class="btn btn-success" (click) ="makePayment(0)" >Buy a coffee - $2</button>
         </div>
         <div class="col-6">
             <button type="button" class="btn btn-success"  (click) ="makePayment(1)">Buy groceries -$50 </button>
@@ -20,7 +20,11 @@
                 <button type="button" class="btn btn-success"  (click) ="makePayment(3)">Buy dairy - $10</button>
               </div>
             </div>
-
+  <div class="row">
+      <div class="col-6">
+          <button type="button" class="btn btn-success"  (click) ="makePayment(4)">Go inside a restaurant</button>
+        </div>
+    </div>
 
           </div>
 

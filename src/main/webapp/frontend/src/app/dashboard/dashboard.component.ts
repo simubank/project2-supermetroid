@@ -21,6 +21,8 @@ export class DashboardComponent implements OnInit {
   public transaction: any[];
   public icon: number;
 
+  public showTrans = false;
+
   public notification: string = null;
   public notificationClass: string = null;
   public showPayment = false;
@@ -69,6 +71,10 @@ getCustomer(id: string) {
       this.customer = this.customer.result[0];
       this.dataService.changeCustomer(this.customer);
     });
+  }
+
+  toggleTrans() {
+    this.showTrans = !this.showTrans;
   }
 
   getCustomerDb(id: string) {

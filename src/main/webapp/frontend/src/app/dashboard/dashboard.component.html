@@ -11,7 +11,7 @@
   </div>
 
   <div class="row">
-      <p class="col-7 welcome">Hi! {{customer.givenName}}, {{customer.surname}} </p>
+      <p class="col-7 welcome">Hi, {{customer.givenName}}!</p>
       <div class="dropdown col-5">
           <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
            aria-expanded="false">
@@ -24,17 +24,15 @@
           </div>
         </div>
       </div>
-  </div>
 
-		<table class="table"> 
+		<table class="table">
 			<tr>
 				<td class="tableFont">Points</td>
 				<td class="tableFont">Balance</td>
 				<td class="tableFont">Allowance</td>
 				<td class="tableFont">Days Left</td>
-				<td class="tableFont">Grocerry Spent</td>
 			</tr>
-			<tr> 
+			<tr>
 				<td>
 					<button type="button" class="btn btn-outline-secondary">{{customerDb.rewardPoints}}</button>
 				</td>
@@ -45,28 +43,62 @@
 					<button type="button" class="btn btn-outline-secondary">${{customerDb.allowanceAccount.allowance}}</button>
 				</td>
 				<td>
-					<button type="button" class="btn btn-outline-secondary">{{customerDb.rewardPoints}}</button>
+					<button type="button" class="btn btn-outline-secondary">{{customerDb.allowanceAccount.daysLeft}}</button>
 				</td>
-				<td>
-					<button type="button" class="btn btn-outline-secondary">${{customerDb.rewardPoints}}</button>
-				</td>
+
 			</tr>
 		</table>
 
 	<div class="container">
+      <hr>
+    <div class="row">
+      <div class="col-1">
+          <i class="fa fa-shopping-cart green" aria-hidden="true"></i>
+      </div>
+  <div class="col-8">
+
+    Amount Spent on Grocery
+  </div>
+  <div class="col-2 green">
+       ${{customerDb.track.groceryAmount}}
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-1">
+          <i class="fa fa-cutlery red" aria-hidden="true"></i>
+      </div>
+  <div class="col-8">
+      Amount Spent on Eating Out
+    </div>
+    <div class="col-2 red">
+        ${{customerDb.track.restaurantAmount}}
+     </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <i class="fa fa-dollar" aria-hidden="true"></i>
+        </div>
+    <div class="col-8">
+        Savings Account Balance
+      </div>
+      <div class="col-2">
+          ${{customerDb.track.groceryAmount}}
+       </div>
+    </div>
+
 	<div class="row">
-		<div class="col-xs-2 col-lg-2">
-			<div class="space"></div>
+		<div class="col-xs-2 col-lg-2 check">
+<hr>
 			<div class="card">
-				<div class="card-header"> <h5> Your Transactions </h5></div>
-				<div class="card-body">
+				<div class="card-header" (click)="toggleTrans()"> <h5> Your Transactions </h5></div>
+				<div class="card-body" *ngIf="showTrans">
 					<table class="table" *ngIf="customerDb.allowanceAccount">
 						<tr>
 							<th>Merchant Name</th>
               <th>Amount</th>
               <th>Account Balance</th>
 						</tr>
-						<tr *ngFor="let trans of customerDb.allowanceAccount.transactions">
+						<tr *ngFor="let trans of customerDb.allowanceAccount.transactions.slice().reverse()">
 							<ng-container *ngIf="trans.success">
 								<td>{{trans.merchantName}}</td>
                 <td> ${{trans.currencyAmount}}</td>

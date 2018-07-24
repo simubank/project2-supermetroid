@@ -1,22 +1,22 @@
 
   <div class="form-group">
-      <label>Savings Start Date - {{customer.givenName}} </label>
+      <label class="labels">Savings Start Date - {{customer.givenName}} </label>
       <input class="form-control" style="background-color: white;" type="date" [(ngModel)]="dateInClass">
   </div>
 
   <div class="form-group">
-      <label>Set Income (CAD)</label>
+      <label class="labels" class="labels">Set Income (CAD)</label>
       <input [(ngModel)]="income" class="form-control" placeholder="40,000" type="text" (ngModelChange)="calculateValue()">
       <label>Suggested Allowance: ${{suggestedBudget | number : 0}}</label>
     </div>
 
   <div class="form-group">
-    <label>Your Allowance</label>
+    <label class="labels">Your Allowance</label>
     <input class="form-control" type="number" [(ngModel)]="allowance" >
 </div>
 
   <div class="form-group">
-      <label for="TimeFrame" isRight=true>Savings Time Frame</label>
+      <label for="TimeFrame" isRight=true class="labels">Savings Time Frame</label>
       <div class="slidecontainer">
         <input type="range" min="1" max="4" class="slider" id="myTimeRange" [(ngModel)]="slide" (ngModelChange)="dateLogic()" >
         <label isOption=true style="width:15%;">Daily</label>
@@ -27,7 +27,7 @@
   </div>
 
   <div class="form-group">
-    <label style="width: 45%; padding-top: 1vh;">Fundings Account</label>
+    <label style="width: 45%; padding-top: 1vh;" class="labels">Fundings Account</label>
     <div class="dropdown" style="float:right; width: 53%;">
       <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="height:6vh; color: black; background-color: white; border: 0; outline: none; width: 80%;">{{chequingAccount}}</button>
       <ul class="dropdown-menu" style="padding-left: 5vw; padding-right: 5vw;">
@@ -38,7 +38,8 @@
   </div>
 
   <div class="form-group">
-    <label style="width: 45%; padding-top: 1vh;">Savings Account</label>
+    <label style="width: 45%; padding-top: 1vh;" class="labels">Savings Account</label>
+
     <div class="dropdown" style="float:right; width: 53%;">
       <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="height:6vh; color: black; background-color: white; border: 0; outline: none; width: 80%;">{{savingsAccount}}</button>
       <ul class="dropdown-menu" style="padding-left: 5vw; padding-right: 5vw;">
@@ -46,8 +47,30 @@
         <li (click)="onClickSavings2()"> Savings2</li>
       </ul>
     </div>
+
   </div>
 
+  <div class="form-group">
+      <a data-target="#myModal" data-toggle="modal" class="link"><br>Start Saving with a Tax Free Savings Account!</a>
+  </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+       <!-- Modal content-->
+       <div class="modal-content" style="height: 95vh;">
+        <div class="modal-header">
+           <h4 class="modal-title">Sign Up Now!</h4>
+           <button type="button" class="close" data-dismiss="modal"></button>
+           <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+        </div>
+        <div class="modal-body">
+           <iframe style="height: 85vh; width: 90vw;" src="https://www.td.com/ca/en/personal-banking/products/saving-investing/registered-plans/tfsa/"></iframe>
+        </div>
+       </div>
+
+    </div>
+   </div>
 
   <div class="form-group" style="padding-top: 1vh;">
     <a routerLink="/dashboard" role="button" class="btn btn-secondary" style="float: right; padding-left: 5vw; padding-right: 5vw;" (click)="dateLogic()">Save</a>
