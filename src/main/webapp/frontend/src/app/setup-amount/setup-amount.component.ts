@@ -15,26 +15,26 @@ export class SetupAmountComponent implements OnInit {
   public sliderVal: number;
   public chequingAccount: string;
   public savingsAccount: string;
-  public suggestedBudget:any; 
+  public suggestedBudget:any;
   public customer: any;
   public recommendedAmount: string;
   public constMult= 0.07874+0.02363;
-  public income:number; 
-  public slide:any; 
-  public startDate:any; 
+  public income:number;
+  public slide:any;
+  public startDate:any;
   public endDate=new Date();
   public timePeriod: string;
   public allowance:number;
-  public divideBy:number=12; 
+  public divideBy:number=12;
   public dateInClass:any;
   constructor(private dataService: DataServiceService) {
-    
+
   }
-  dateLogic(){ 
+  dateLogic(){
 
     this.startDate=new Date(this.dateInClass);
     console.log(this.startDate);
-    if(this.slide==1){ 
+    if(this.slide==1){
       this.endDate.setDate(this.startDate.getDate()+2);
       this.timePeriod="DAILY";
       this.divideBy=365;
@@ -42,14 +42,14 @@ export class SetupAmountComponent implements OnInit {
     }
     else if( this.slide ==2)
     {
-      this.endDate.setDate(this.startDate.getDate()+7); 
+      this.endDate.setDate(this.startDate.getDate()+7);
       this.timePeriod="WEEKLY";
       this.divideBy=52;
       this.calculateValue();
     }
     else if (this.slide==3)
     {
-      this.endDate.setDate(this.startDate.getDate()+14); 
+      this.endDate.setDate(this.startDate.getDate()+14);
       this.timePeriod="BI-WEEKLY";
       this.divideBy=26;
       this.calculateValue();
@@ -75,20 +75,20 @@ export class SetupAmountComponent implements OnInit {
         console.log(customer);
       }
     )
-  
+
   }
   calculateValue(){
-    
+
     if(this.customer.habitationStatus=="rent"){
-      let Y = 0.07874+0.02363*0; 
+      let Y = 0.07874+0.02363*0;
       this.suggestedBudget=(this.income*Y)/this.divideBy;
     }
     else if (this.customer.habitationStatus=="sharingrent"){
-      let Y = 0.07874+0.02363*1; 
+      let Y = 0.07874+0.02363*1;
       this.suggestedBudget=(this.income*Y)/this.divideBy;
     }
     else if ( this.customer.habitationStatus=="rentfree"){
-      let Y = 0.07874+0.02363*2; 
+      let Y = 0.07874+0.02363*2;
       this.suggestedBudget=(this.income*Y)/this.divideBy;
     }
   }
@@ -108,7 +108,7 @@ export class SetupAmountComponent implements OnInit {
     this.savingsAccount = 'Savings2';
   }
 
-  
+
   ngOnInit() {
     this.dataService.customerMessage.subscribe(
         (customer) => {
@@ -116,15 +116,15 @@ export class SetupAmountComponent implements OnInit {
           this.chequingAccount = "Chequing1";
           this.savingsAccount = "Savings1";
           if(this.customer.habitationStatus=="rent"){
-            let Y = 0.07874+0.02363*0; 
+            let Y = 0.07874+0.02363*0;
             this.suggestedBudget=this.income*Y;
           }
           else if (this.customer.habitationStatus=="sharingrent"){
-            let Y = 0.07874+0.02363*1; 
+            let Y = 0.07874+0.02363*1;
             this.suggestedBudget=this.income*Y;
           }
           else if ( this.customer.habitationStatus=="rentfree"){
-            let Y = 0.07874+0.02363*2; 
+            let Y = 0.07874+0.02363*2;
             this.suggestedBudget=this.income*Y;
           }
         });

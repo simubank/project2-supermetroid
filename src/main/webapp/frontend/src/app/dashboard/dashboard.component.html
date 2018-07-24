@@ -82,7 +82,7 @@
         Savings Account Balance
       </div>
       <div class="col-2">
-          ${{savingsAccountBalance}}
+          ${{customer.savingsAccountBalance}}
        </div>
     </div>
 
@@ -99,7 +99,7 @@
               <th>Account Balance</th>
 						</tr>
 						<tr *ngFor="let trans of customerDb.allowanceAccount.transactions.slice().reverse()">
-							<ng-container *ngIf="trans.success">
+							<ng-container *ngIf="trans.success && trans.merchantName!='Visit'">
 								<td>{{trans.merchantName}}</td>
                 <td> ${{trans.currencyAmount}}</td>
                 <td> ${{trans.postBalance}}</td>

@@ -70,12 +70,12 @@ getCustomer(id: string) {
     ((data) => {
       this.customer = data;
       this.customer = this.customer.result[0];
-      this.dataService.changeCustomer(this.customer);
       const savingsAccountId = this.customer['maskedRelatedBankAccounts'].individual[1].accountId;
       if (savingsAccountId != null) {
         this.dataService.searchAPI('/accounts/' + savingsAccountId).subscribe(
           (account) => {
-              this.savingsAccountBalance = account['result']['bankAccount']['balance'];
+              this.customer.savingsAccountBalance = account['result']['bankAccount']['balance'];
+              this.dataService.changeCustomer(this.customer);
           }
         );
       }
