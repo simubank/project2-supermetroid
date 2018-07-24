@@ -18,7 +18,7 @@ export class SetupAmountComponent implements OnInit {
   public suggestedBudget:any;
   public customer: any;
   public recommendedAmount: string;
-  public constMult= 0.07874+0.02363;
+  public constMult = 0.07874+0.02363;
   public income:number;
   public slide:any;
   public startDate:any;
@@ -29,6 +29,30 @@ export class SetupAmountComponent implements OnInit {
   public dateInClass:any;
   constructor(private dataService: DataServiceService) {
 
+  }
+  changeSlider(){
+    if(this.slide==1){
+      this.timePeriod="DAILY";
+      this.divideBy=365;
+      this.calculateValue();
+    }
+    else if( this.slide ==2)
+    {
+      this.timePeriod="WEEKLY";
+      this.divideBy=52;
+      this.calculateValue();
+    }
+    else if (this.slide==3)
+    {
+      this.timePeriod="BI-WEEKLY";
+      this.divideBy=26;
+      this.calculateValue();
+    }
+    else if (this.slide==4){
+      this.timePeriod="MONTHLY";
+      this.divideBy=12;
+      this.calculateValue();
+    }
   }
   dateLogic(){
 
@@ -75,7 +99,6 @@ export class SetupAmountComponent implements OnInit {
         console.log(customer);
       }
     )
-
   }
   calculateValue(){
 

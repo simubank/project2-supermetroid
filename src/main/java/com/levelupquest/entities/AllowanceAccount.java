@@ -32,7 +32,6 @@ public class AllowanceAccount {
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	private LocalDate startDate;
 	@JsonDeserialize(using = LocalDateDeserializer.class)
-	//new Date().toISOString().substring(0,10);
 	private LocalDate endDate;
 	private int daysLeft;
 	@OneToMany(cascade=CascadeType.ALL)

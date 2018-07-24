@@ -8,5 +8,6 @@ public interface AllowanceAccountService {
 
 	AllowanceAccount save(AllowanceAccount account);
 	Optional<AllowanceAccount> getAccountById(int id);
+	void delete(AllowanceAccount account);
 	
 }

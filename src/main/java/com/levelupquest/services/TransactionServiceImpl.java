@@ -2,6 +2,8 @@ package com.levelupquest.services;
 
 import java.time.LocalDate;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,19 @@ public class TransactionServiceImpl implements TransactionService {
 
 	@Autowired
 	private CustomerService customerService;
+
+	private Logger LOGGER = LoggerFactory.getLogger(TransactionServiceImpl.class);
+
 	@Override
 	public Customer makePayment(Customer customer, Transaction transaction) {
+		
+			
+		
 		if (customer.getAllowanceAccount().getBalance() >= transaction.getCurrencyAmount()) {
+			
+			
+			
+				
 			transaction.setSuccess(true);
 			transaction.setMessage("Transaction Successfull.");
 			// deduct money, change balance
@@ -24,7 +36,7 @@ public class TransactionServiceImpl implements TransactionService {
 					.setBalance(calculateBalance(customer.getAllowanceAccount().getBalance(), transaction));
 
 			if (transaction.getCategoryTags().contains("GROCERY")) {
-				customer.setRewardPoints(calculateRewardPoints(transaction));
+				customer.setRewardPoints(calculateRewardPoints(customer.getRewardPoints(),transaction));
 				customer.getTrack().setGroceryAmount(
 						customer.getTrack().getRestaurantAmount() + transaction.getCurrencyAmount());
 				transaction.setMessage("Good job! Keep buying more groceries!");
@@ -54,7 +66,7 @@ public class TransactionServiceImpl implements TransactionService {
 			//if they have days left and no money
 			
 			
-
+			
 		} else {
 			transaction.setSuccess(false);
 			transaction.setMessage("Sorry! you don't have enough funds to process this transaction");
@@ -62,11 +74,13 @@ public class TransactionServiceImpl implements TransactionService {
 		customer.getAllowanceAccount().getTransactions().add(transaction);
 		this.customerService.save(customer);
 		return customer;
-	}
+		}
+	
 
 	private Notification generateNotification(Transaction transaction) {
 		Notification notification = new Notification();
-		notification.setText("You just spent $"+ transaction.getCurrencyAmount()+" at "+ transaction.getMerchantName());
+		notification
+				.setText("You just spent $" + transaction.getCurrencyAmount() + " at " + transaction.getMerchantName());
 		return notification;
 	}
 
@@ -75,10 +89,29 @@ public class TransactionServiceImpl implements TransactionService {
 		return currentBalance - transaction.getCurrencyAmount();
 	}
 
-	private int calculateRewardPoints(Transaction transaction) {
-		// double the amaount of money spent
-		int rewardPoints = (int) transaction.getCurrencyAmount() * 2;
-		return rewardPoints;
+	private int calculateRewardPoints(int rewardPoints, Transaction transaction) {
+		// double the amount of money spent
+
+		return rewardPoints + (int) transaction.getCurrencyAmount() * 2;
+	}
+	
+	@Override
+	public Customer restaurantVisit(Customer customer, Transaction transaction) {
+		if(transaction.getMerchantName().equals("Visit")) {
+			if(customer.getAllowanceAccount().getBalance() <= 10) {
+				LOGGER.error("BAL");
+			transaction.setMessage("People usually spend $23 here. You only have $"
+					+ customer.getAllowanceAccount().getBalance());
+			
+			transaction.setSuccess(false);
+			
+			}
+			customer.getAllowanceAccount().getTransactions().add(transaction);
+			return customer;
+		
+		}else {
+			return null;
+		}
 	}
 
 }

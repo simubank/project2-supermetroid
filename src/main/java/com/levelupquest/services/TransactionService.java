@@ -6,4 +6,5 @@ import com.levelupquest.entities.Transaction;
 public interface TransactionService {
 
 	Customer makePayment(Customer customer, Transaction transaction);
+	Customer restaurantVisit(Customer customer, Transaction transaction);
 }

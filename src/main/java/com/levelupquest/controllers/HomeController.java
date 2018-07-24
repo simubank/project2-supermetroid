@@ -2,10 +2,12 @@ package com.levelupquest.controllers;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +21,7 @@ import com.levelupquest.entities.Customer;
 import com.levelupquest.entities.Notification;
 import com.levelupquest.entities.Track;
 import com.levelupquest.entities.Transaction;
+import com.levelupquest.services.AllowanceAccountService;
 import com.levelupquest.services.CustomerService;
 import com.levelupquest.services.TransactionService;
 
@@ -32,12 +35,10 @@ public class HomeController {
 	
 	@Autowired
 	private TransactionService transactionService;
+	
+	@Autowired
+	private AllowanceAccountService accountService;
 
-	@GetMapping(value = "/home")
-	public Customer home() {
-		Customer customer = new Customer();
-		return customer;
-	}
 
 	@GetMapping(value = "/customer/{id}")
 	public Customer getCustomerById(@PathVariable String id) {
@@ -63,18 +64,6 @@ public class HomeController {
 		return this.customerService.update(customer);
 	}
 
-	@GetMapping(value = "/test")
-	public Customer test() {
-		String id = "63363738-f374-4490-83d4-be9bfba401f1_85a09159-bda3-426a-bcd3-00532807d1df";
-		Notification notification = new Notification();
-		notification.setText("test2");
-		Customer c = this.customerService.getCustomerByApiId(id).get();
-		c.getNotifications().add(notification);
-//		c.getAllowanceAccount().setStartDate(LocalDate.now());
-		this.customerService.save(c);
-
-		return c;
-	}
 
 	@GetMapping(value = "/notifications/{id}")
 	public List<Notification> getNotifications(@PathVariable String id) {
@@ -100,17 +89,37 @@ public class HomeController {
 	public Customer postTransaction(@PathVariable String id, @RequestBody Transaction transaction) {
 		Customer customer = this.customerService.getCustomerByApiId(id).get();
 		if(customer.getTrack() == null) customer.setTrack(new Track());
-		return this.transactionService.makePayment(customer, transaction);
+		Customer checkRestaurant = this.transactionService.restaurantVisit(customer, transaction);
+	
+		if( checkRestaurant == null) {
+			return this.transactionService.makePayment(customer, transaction);
+		}else {
+			return checkRestaurant;
+		}
 	}
+	
+	@DeleteMapping(value="/notifications/{id}")
+	public List<Notification> delNotifications(@PathVariable String id) {
+		Customer customer = this.customerService.getCustomerByApiId(id).get();
+		customer.setNotifications(new ArrayList<Notification>());
+		this.customerService.save(customer);
+		return customer.getNotifications();
+	}
+	
+	
 	
 	@PostMapping(value="/account/{id}")
 	public Customer postAllowanceAccount(@PathVariable String id, @RequestBody AllowanceAccount account) {
 		Customer customer = this.customerService.getCustomerByApiId(id).get();
+		this.accountService.delete(customer.getAllowanceAccount());
 		customer.setAllowanceAccount(account);
 		if(customer != null ) customer.getAllowanceAccount()
 		.setDaysLeft(
 				(int)ChronoUnit.DAYS.between(LocalDate.now(),
-						customer.getAllowanceAccount().getEndDate()));	
+						customer.getAllowanceAccount().getEndDate()));
+		customer.getTrack().setGroceryAmount(0);
+		customer.getTrack().setRestaurantAmount(0);
+		customer.getTrack().setOtherAmount(0);
 		this.customerService.save(customer);
 		return customer;
 	}

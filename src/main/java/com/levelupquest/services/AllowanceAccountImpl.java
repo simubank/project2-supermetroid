@@ -24,6 +24,12 @@ public class AllowanceAccountImpl implements AllowanceAccountService{
 	public Optional<AllowanceAccount> getAccountById(int id) {
 		return this.allowanceAccountRepository.findById(id);
 	}
+
+	@Override
+	public void delete(AllowanceAccount account) {
+		this.allowanceAccountRepository.delete(account);
+		
+	}
 	
 	
 	
