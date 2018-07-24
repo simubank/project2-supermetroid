@@ -18,7 +18,7 @@
   <div class="form-group">
       <label for="TimeFrame" isRight=true class="labels">Savings Time Frame</label>
       <div class="slidecontainer">
-        <input type="range" min="1" max="4" class="slider" id="myTimeRange" [(ngModel)]="slide" (ngModelChange)="dateLogic()" >
+        <input type="range" min="1" max="4" class="slider" id="myTimeRange" [(ngModel)]="slide" (ngModelChange)="changeSlider()" >
         <label isOption=true style="width:15%;">Daily</label>
         <label isOption=true style="width:32%;">Weekly</label>
         <label isOption=true style="width:30%;">Bi-Weekly</label>
