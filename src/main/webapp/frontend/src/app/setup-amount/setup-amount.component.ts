@@ -15,37 +15,36 @@ export class SetupAmountComponent implements OnInit {
   public sliderVal: number;
   public chequingAccount: string;
   public savingsAccount: string;
-  public suggestedBudget:any;
+  public suggestedBudget: any;
   public customer: any;
   public recommendedAmount: string;
-  public constMult = 0.07874+0.02363;
-  public income:number;
-  public slide:any;
-  public startDate:any;
-  public endDate=new Date();
+  public constMult = 0.07874 + 0.02363;
+  public income: number;
+  public slide: any;
+  public startDate: any;
+  public endDate = new Date();
   public timePeriod: string;
-  public allowance:number;
-  public divideBy:number=12;
-  public dateInClass:any;
+  public allowance: number;
+  public divideBy = 12;
+  public dateInClass: any;
   constructor(private dataService: DataServiceService) {
 
   }
-  changeSlider(){
-    if(this.slide==1){
-      this.timePeriod="DAILY";
-      this.divideBy=365;
+  changeSlider() {
+    if (this.slide === 1) {
+      this.timePeriod = 'DAILY';
+      this.divideBy = 365;
       this.calculateValue();
     }
-    else if( this.slide ==2)
-    {
-      this.timePeriod="WEEKLY";
-      this.divideBy=52;
+    else if ( this.slide === 2) {
+      this.timePeriod = 'WEEKLY';
+      this.divideBy = 52;
       this.calculateValue();
     }
-    else if (this.slide==3)
+    else if (this.slide == 3)
     {
-      this.timePeriod="BI-WEEKLY";
-      this.divideBy=26;
+      this.timePeriod = 'BI-WEEKLY';
+      this.divideBy = 26;
       this.calculateValue();
     }
     else if (this.slide==4){
@@ -93,12 +92,12 @@ export class SetupAmountComponent implements OnInit {
       endDate: this.endDate.toISOString().substring(0,10)
     }
 
-    this.dataService.postAccount('/account/'+ this.customer.id, allowanceAccount).subscribe(
+    this.dataService.postAccount('/account/' + this.customer.id, allowanceAccount).subscribe(
       (customer) => {
         this.customer = customer;
-        console.log(customer);
+        this.dataService.changeCustomerDB(this.customer);
       }
-    )
+    );
   }
   calculateValue(){
 

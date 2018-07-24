@@ -42,6 +42,8 @@ export class DashboardComponent implements OnInit {
     if (this.customer == null) {
       this.getCustomer(this.customerIds[0]);
   }
+
+
   }
   constructor(private dataService: DataServiceService) {
     this.dataService.customerMessage.subscribe(
