@@ -1,7 +1,11 @@
+<div *ngIf="notifications.length >= 1">
+
 <div *ngFor="let notification of notifications">
   <div isNotification=true>
     <label><b>{{notification.date}} </b></label>
     <label style="font-size: 14px">{{notification.text}}</label>
   </div>
   <div style="height: 10px;"></div>
+</div>
+
 </div>

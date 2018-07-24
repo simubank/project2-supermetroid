@@ -27,6 +27,13 @@ export class DataServiceService {
   private customerDBSource = new BehaviorSubject(new Object());
   customerDBMessage = this.customerDBSource.asObservable();
 
+  private notificationAddSource = new BehaviorSubject(new Object());
+  notificationAdd = this.notificationAddSource.asObservable();
+
+  changeNotificationAdd(count: any) {
+    this.notificationAddSource.next(count);
+  }
+
   changeCustomer(customer: any) {
     this.customerSource.next(customer);
   }
@@ -64,7 +71,7 @@ export class DataServiceService {
 
     }
 
-    
+
     postAccount(url: string, account: any) {
       return this.http.post(this.javaApi + url, account)
         .pipe(

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationComponent {
 
-  public notifications: any;
+  public notifications: any = [];
   public customer: any;
   public oldCustomer: any;
   constructor(private dataService: DataServiceService) {
